@@ -3,10 +3,10 @@ using UoW;
 
 namespace BLL
 {
-    public class Provider:IProvider
+    public class GoodsProvider:IProvider
     {
         UnitOfWork UoW;
-        public Provider(UnitOfWork UoW)
+        public GoodsProvider(UnitOfWork UoW)
         {
             this.UoW = UoW;
         }
@@ -14,7 +14,7 @@ namespace BLL
         public void Deliver(int Count, int id)
         {
             Thread.Sleep(60000);
-            var goods = new GetGoods(UoW);
+            var goods = new GoodsController(UoW);
             var current = goods.GetCurrent(id);
             current.Count += Count;
             UoW.Goods.Update(current);

@@ -1,6 +1,6 @@
 ﻿namespace BLL.Interfaces
 {
-    public interface IShow<T>
+    public interface IGiver<T>
     {
         List<T> GetAll();
         T GetCurrent(int id);

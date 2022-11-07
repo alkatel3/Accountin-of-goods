@@ -1,17 +1,35 @@
-﻿using UoW;
+﻿using BLL.Interfaces;
+using UoW;
 using DAL.Entities;
 using BLL.Exceptions;
-using BLL.Interfaces;
 
 namespace BLL
 {
-    public class GetGoods:IShow<Goods>
+    public class GoodsController : ICreater<Goods>, IDeleter<Goods>, IUpDater<Goods>, IGiver<Goods>
     {
         private UnitOfWork UoW;
 
-        public GetGoods(UnitOfWork UoW)
+        public GoodsController(UnitOfWork UoW)
         {
             this.UoW = UoW;
+        }
+
+        public void Creat(Goods entity)
+        {
+            UoW.Goods.Creat(entity);
+            UoW.Save();
+        }
+
+        public void Delete(Goods entity)
+        {
+            UoW.Goods.Delete(entity.Id);
+            UoW.Save();
+        }
+
+        public void UpDate(Goods entity)
+        {
+            UoW.Goods.Update(entity);
+            UoW.Save();
         }
 
         public List<Goods> GetAll()
@@ -21,7 +39,7 @@ namespace BLL
 
         public Goods GetCurrent(int id)
         {
-            var result=UoW.Goods.Get(id);
+            var result = UoW.Goods.Get(id);
             if (result != null)
                 return result;
             throw new GoodsException("Current goods didn't fint");
@@ -32,7 +50,7 @@ namespace BLL
             return UoW.Goods.GetAllInCategory(standard).ToList();
         }
 
-        public  List<Goods> GetInStock()
+        public List<Goods> GetInStock()
         {
             return UoW.Goods.GetInStock().ToList();
         }

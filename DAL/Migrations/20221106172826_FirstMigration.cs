@@ -32,7 +32,7 @@ namespace DAL.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Count = table.Column<int>(type: "INTEGER", nullable: false),
                     Priсe = table.Column<decimal>(type: "TEXT", nullable: false),
-                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CategoryId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
