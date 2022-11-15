@@ -5,7 +5,7 @@ namespace BLL
 {
     public class GoodsSeller : ISeller
     {
-        UnitOfWork UoW=new UnitOfWork();
+        UnitOfWork UoW;
         GoodsProvider provider;
         public GoodsSeller(UnitOfWork UoW)
         {
@@ -20,7 +20,7 @@ namespace BLL
             current.Count -= Count;
             UoW.Goods.Update(current);
             UoW.Save();
-            if(current.Count < 0)
+            if (current.Count < 0)
             {
                 await Task.Run(()=> provider.Deliver(Count*2,id));
             }

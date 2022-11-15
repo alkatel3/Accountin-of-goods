@@ -30,7 +30,7 @@ namespace UoW.Repositories
 
         public void Update(Category category)
         {
-            db.Entry(category).State = EntityState.Modified;
+            db.MarkAsModified(category);
         }
 
         public void Delete(int id)

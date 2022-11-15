@@ -15,7 +15,7 @@ namespace UoW.Repositories
 
         public IEnumerable<Goods> GetAll()
         {
-            return db.Goods.Include(g=>g.Category);
+            return db.Goods.Include(g => g.Category);
         }
 
         public IEnumerable<Goods> GetAllInCategory(int CategoryId)
@@ -40,7 +40,7 @@ namespace UoW.Repositories
 
         public void Update(Goods goods)
         {
-            db.Entry(goods).State = EntityState.Modified;
+            db.MarkAsModified(goods);
         }
 
         public void Delete(int id)

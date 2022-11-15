@@ -9,9 +9,9 @@ namespace UoW
         private GoodsRepository? goodsRepository;
         private CategoryRepository? categoryRepository;
 
-        public UnitOfWork(string connectionString= "Data Source=Goods.db")
+        public UnitOfWork(ApplicationContext db)
         {
-            db = new(connectionString);
+            this.db = db;
         }
 
         public GoodsRepository Goods

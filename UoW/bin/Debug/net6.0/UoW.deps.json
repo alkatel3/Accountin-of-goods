@@ -8,10 +8,22 @@
     ".NETCoreApp,Version=v6.0": {
       "UoW/1.0.0": {
         "dependencies": {
-          "DAL": "1.0.0"
+          "DAL": "1.0.0",
+          "Moq.AutoMock": "3.5.0-ci0287"
         },
         "runtime": {
           "UoW.dll": {}
+        }
+      },
+      "Castle.Core/5.1.0": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Castle.Core.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.1.0.0"
+          }
         }
       },
       "Microsoft.Data.Sqlite.Core/7.0.0-rc.2.22472.11": {
@@ -187,6 +199,40 @@
           }
         }
       },
+      "Moq/4.18.2": {
+        "dependencies": {
+          "Castle.Core": "5.1.0"
+        },
+        "runtime": {
+          "lib/net6.0/Moq.dll": {
+            "assemblyVersion": "4.18.0.0",
+            "fileVersion": "4.18.2.0"
+          }
+        }
+      },
+      "Moq.AutoMock/3.5.0-ci0287": {
+        "dependencies": {
+          "Moq": "4.18.2",
+          "NonBlocking": "2.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Moq.AutoMock.dll": {
+            "assemblyVersion": "3.5.0.0",
+            "fileVersion": "3.5.0.0"
+          }
+        }
+      },
+      "NonBlocking/2.1.0": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/NonBlocking.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "SQLitePCLRaw.core/2.1.2": {
         "dependencies": {
           "System.Memory": "4.5.3"
@@ -195,6 +241,28 @@
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {
             "assemblyVersion": "2.1.2.1721",
             "fileVersion": "2.1.2.1721"
+          }
+        }
+      },
+      "System.Diagnostics.EventLog/6.0.0": {
+        "runtime": {
+          "lib/net6.0/System.Diagnostics.EventLog.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net6.0/System.Diagnostics.EventLog.Messages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/lib/net6.0/System.Diagnostics.EventLog.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
           }
         }
       },
@@ -233,7 +301,9 @@
       },
       "DAL/1.0.0": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Sqlite.Core": "7.0.0-rc.2.22472.11"
+          "Microsoft.EntityFrameworkCore.Sqlite.Core": "7.0.0-rc.2.22472.11",
+          "Moq": "4.18.2",
+          "Moq.AutoMock": "3.5.0-ci0287"
         },
         "runtime": {
           "DAL.dll": {}
@@ -246,6 +316,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Castle.Core/5.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-31UJpTHOiWq95CDOHazE3Ub/hE/PydNWsJMwnEVTqFFP4WhAugwpaVGxzOxKgNeSUUeqS2W6lxV+q7u1pAOfXg==",
+      "path": "castle.core/5.1.0",
+      "hashPath": "castle.core.5.1.0.nupkg.sha512"
     },
     "Microsoft.Data.Sqlite.Core/7.0.0-rc.2.22472.11": {
       "type": "package",
@@ -359,12 +436,40 @@
       "path": "microsoft.extensions.primitives/7.0.0-rc.2.22472.3",
       "hashPath": "microsoft.extensions.primitives.7.0.0-rc.2.22472.3.nupkg.sha512"
     },
+    "Moq/4.18.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SjxKYS5nX6prcaT8ZjbkONh3vnh0Rxru09+gQ1a07v4TM530Oe/jq3Q4dOZPfo1wq0LYmTgLOZKrqRfEx4auPw==",
+      "path": "moq/4.18.2",
+      "hashPath": "moq.4.18.2.nupkg.sha512"
+    },
+    "Moq.AutoMock/3.5.0-ci0287": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Eza/f9LXyV5FfNkrhZeZWNBqmaKHfFpPCvcr9xcRAlMa/Gx8Bfi57QAu+15mQtysBDIpXy7yg9dKU4q63g8cLw==",
+      "path": "moq.automock/3.5.0-ci0287",
+      "hashPath": "moq.automock.3.5.0-ci0287.nupkg.sha512"
+    },
+    "NonBlocking/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ih6NcB++JPLOPyFMSQjBpE5gSQZiuTIjZDOyxz5xWII03WKtA1H+6na29vkeihE+mWQf6KOjOIeCAXZxyFj2zg==",
+      "path": "nonblocking/2.1.0",
+      "hashPath": "nonblocking.2.1.0.nupkg.sha512"
+    },
     "SQLitePCLRaw.core/2.1.2": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-A8EBepVqY2lnAp3a8jnhbgzF2tlj2S3HcJQGANTYg/TbYbKa8Z5cM1h74An/vy0svhfzT7tVY0sFmUglLgv+2g==",
       "path": "sqlitepclraw.core/2.1.2",
       "hashPath": "sqlitepclraw.core.2.1.2.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw==",
+      "path": "system.diagnostics.eventlog/6.0.0",
+      "hashPath": "system.diagnostics.eventlog.6.0.0.nupkg.sha512"
     },
     "System.Memory/4.5.3": {
       "type": "package",

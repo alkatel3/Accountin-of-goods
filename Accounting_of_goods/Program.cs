@@ -52,7 +52,7 @@ namespace Accounting_of_goods
 
         static bool BaseEvents()
         {
-            var UoW = new UnitOfWork();
+            var UoW = new UnitOfWork(new ApplicationContext());
             var Goods = new GoodsController(UoW);
             var Categories = new CategoryController(UoW);
             var result = UserWish();
@@ -144,7 +144,7 @@ namespace Accounting_of_goods
         static void GoodsEvents(Goods goods)
         {
             var Event = UserWishGoods();
-            var UoW = new UnitOfWork();
+            var UoW = new UnitOfWork(new ApplicationContext());
             var Categories = new CategoryController(UoW);
             var Goods = new GoodsController(UoW);
 
@@ -188,7 +188,7 @@ namespace Accounting_of_goods
         static void CategoryEvents(Category category)
         {
             var Event = UserWishCategory();
-            var UoW = new UnitOfWork();
+            var UoW = new UnitOfWork(new ApplicationContext());
             var Categories = new CategoryController(UoW);
 
             switch (Event)
@@ -245,12 +245,12 @@ namespace Accounting_of_goods
             return NewCategory;
         }
 
-        
 
 
-      
 
 
-        
+
+
+
     }
 }

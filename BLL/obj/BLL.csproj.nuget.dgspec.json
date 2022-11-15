@@ -60,6 +60,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.0-rc.2.22472.11, )"
+            },
+            "Moq.AutoMock": {
+              "target": "Package",
+              "version": "[3.5.0-ci0287, )"
             }
           },
           "imports": [
@@ -130,6 +134,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.0-rc.2.22472.11, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.18.2, )"
+            },
+            "Moq.AutoMock": {
+              "target": "Package",
+              "version": "[3.5.0-ci0287, )"
             }
           },
           "imports": [
@@ -194,6 +206,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Moq.AutoMock": {
+              "target": "Package",
+              "version": "[3.5.0-ci0287, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
