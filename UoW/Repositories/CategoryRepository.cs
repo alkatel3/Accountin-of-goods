@@ -1,6 +1,5 @@
 ﻿using DAL;
 using DAL.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace UoW.Repositories
 {

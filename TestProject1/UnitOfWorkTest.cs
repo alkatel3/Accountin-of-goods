@@ -1,38 +1,85 @@
 using Microsoft.EntityFrameworkCore;
 using Moq;
+using UoW.Repositories;
 
 namespace TestProject1
 {
     public class ApplicationContextTest
     {
         UnitOfWork UoW = null!;
+        Mock<DbSet<Category>> MockCategories = null!;
+        Mock<DbSet<Goods>> MockGoods=null!;
+        Mock<ApplicationContext> MockContext = null!;
         [SetUp]
         public void Setup()
         {
+            MockCategories = new Mock<DbSet<Category>>();
+            MockGoods = new Mock<DbSet<Goods>>();
+            MockContext = new Mock<ApplicationContext>("test.db");
+        }
 
+        [TearDown]
+        public void Finalize()
+        {
+            UoW.Dispose();
         }
 
         [Test]
-        public void Test1()
+        public void CategoriesCreat_TryCreatNewCategory_MethodAddFromMockOfApplicationContextForCategoryCalledOnce()
         {
-            var MockCategorys = new Mock<DbSet<Category>>();
-            var MockGoods = new Mock<DbSet<Goods>>();
-            var MockContext = new Mock<ApplicationContext>("Data Source=Goods.db");
-
-            MockContext.Setup(m => m.Categories).Returns(MockCategorys.Object);
-            MockContext.Setup(m => m.Goods).Returns(MockGoods.Object);
-
+            MockContext.Setup(m => m.Categories).Returns(MockCategories.Object);
             UoW = new(MockContext.Object);
-            var c = new Category() { Name = "A" };
-            UoW.Categories.Creat(c);
-            UoW.Save();
-            var goods = new Goods() { Name = "B", Category = c, Count = 100, Priñe = 10 };
-            UoW.Goods.Creat(goods);
-            UoW.Save();
-            MockCategorys.Verify(m => m.Add(It.IsAny<Category>()), Times.Once());
-            MockGoods.Verify(m => m.Add(It.IsAny<Goods>()), Times.Once());
+            var category = new Category() { Name = "A" };
 
-            //MockContext.Verify(m => m.SaveChanges(), Times.Once());
+            UoW.Categories.Creat(category);
+
+            MockCategories.Verify(m => m.Add(category), Times.Once());
+        }
+
+        [Test]
+        public void GoodsCreat_TryCreatNewGoods_MethodAddFromMockOfApplicationContextForGoodsCalledOnce()
+        {
+            MockContext.Setup(m => m.Goods).Returns(MockGoods.Object);
+            UoW = new(MockContext.Object);
+            var goods = new Goods() { Name = "B",
+                Category =new Category() { Name = "category" },
+                Count = 100, Priñe = 10 };
+
+            UoW.Goods.Creat(goods);
+
+            MockGoods.Verify(m => m.Add(It.IsAny<Goods>()), Times.Once());
+        }
+
+        [Test]
+        public void CategoriesGet_TryGetOneCategoryById_MethodFindFromMockOfApplicationContextCalledOnce()
+        {
+            MockContext.Setup(c => c.Categories).Returns(MockCategories.Object);
+            UoW = new(MockContext.Object);
+
+            var Actual = UoW.Categories.Get(0);
+
+            MockCategories.Verify(m => m.Find(0), Times.Once());
+        }
+
+        [Test]
+        public void GoodsGet_TryGetOneGoodsById_MethodFindFromMockOfApplicationContextCalledOnce()
+        {
+            MockContext.Setup(c => c.Goods).Returns(MockGoods.Object);
+            UoW = new(MockContext.Object);
+
+            var Actual = UoW.Goods.Get(0);
+
+            MockGoods.Verify(m => m.Find(0), Times.Once());
+        }
+
+        [Test]
+        public void Save_TrySaveMockDB_MethodSaveChangesFromMockOfApplicationContextCalledOnce()
+        {
+            UoW = new(MockContext.Object);
+
+            UoW.Save();
+
+            MockContext.Verify(m => m.SaveChanges(), Times.Once());
         }
 
         [Test]
@@ -46,9 +93,6 @@ namespace TestProject1
             }.AsQueryable();
 
             var mockSet = new Mock<DbSet<Category>>();
-            mockSet.As<IQueryable<Category>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Category>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Category>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mockSet.As<IQueryable<Category>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
 
             var mockContext = new Mock<ApplicationContext>("Data Source=Goods.db");
