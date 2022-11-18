@@ -1,5 +1,5 @@
 ﻿using static System.Console;
-using DAL.Entities;
+using BLL.Entities;
 
 namespace Accounting_of_goods
 {
@@ -43,17 +43,17 @@ namespace Accounting_of_goods
             var result = ReadLine();
             return result;
         }
-        public static void ShowGoods(List<Goods> goods)
+        public static void ShowGoods(List<GoodsBLL> goods)
         {
-            WriteLine("\t\tName\t\tCount\t\tPrice\t\tCategory");
+            WriteLine("\t\tName\t\tCount\t\tPrice");/*\t\tCategory*/
             int i = 1;
             foreach (var item in goods)
             {
-                WriteLine((i++) + "\t\t" + item.Name + "\t\t" + item.Count + "\t\t" + item.Priсe + "\t\t" + item.Category?.Name);
+                WriteLine((i++) + "\t\t" + item.Name + "\t\t" + item.Count + "\t\t" + item.Priсe + "\t\t" /*+ item.Category?.Name*/);
             }
         }
 
-        public static void ShowCategory(List<Category> categories)
+        public static void ShowCategory(List<CategoryBLL> categories)
         {
             WriteLine("\tName");
             int i = 1;

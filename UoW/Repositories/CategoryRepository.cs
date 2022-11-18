@@ -19,6 +19,7 @@ namespace UoW.Repositories
 
         public Category? Get(int id)
         {
+
             return db.Categories.Find(id);
         }
 
@@ -29,13 +30,13 @@ namespace UoW.Repositories
 
         public void Update(Category category)
         {
-            db.MarkAsModified(category);
+            db.Categories.Update(category);
         }
 
         public void Delete(int id)
         {
             Category? Category = db.Categories.Find(id);
-            if (Category != null)
+            //if (Category != null)
                 db.Categories.Remove(Category);
         }
     }

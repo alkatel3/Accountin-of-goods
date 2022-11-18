@@ -40,13 +40,13 @@ namespace UoW.Repositories
 
         public void Update(Goods goods)
         {
-            db.MarkAsModified(goods);
+            db.Goods.Update(goods);
         }
 
         public void Delete(int id)
         {
             Goods? goods = db.Goods.Find(id);
-            if (goods != null)
+            //if (goods != null)
                 db.Goods.Remove(goods);
         }
     }

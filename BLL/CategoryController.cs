@@ -1,47 +1,57 @@
 ﻿using BLL.Interfaces;
 using DAL.Entities;
-using UoW;
 using BLL.Exceptions;
+using DAL.Repositories;
+using BLL.Entities;
+using AutoMapper;
 
 namespace BLL
 {
-    public class CategoryController : ICreater<Category>, IDeleter<Category>, IUpDater<Category>, IGiver<Category>
+    public class CategoryController : ICreater<CategoryBLL>, IDeleter<CategoryBLL>, IUpDater<CategoryBLL>, IGiver<CategoryBLL>
     {
-        private UnitOfWork UoW;
+        private EFUnitOfWork UoW;
 
-        public CategoryController(UnitOfWork UoW)
+        public CategoryController(EFUnitOfWork UoW)
         {
             this.UoW = UoW;
         }
 
-        public void Creat(Category entity)
+        public void Creat(CategoryBLL entity)
         {
-            UoW.Categories.Creat(entity);
+            var c = new Category() { Name = entity.Name };
+            UoW.Categories.Creat(c);
             UoW.Save();
         }
 
-        public void Delete(Category entity)
+        public void Delete(CategoryBLL entity)
         {
             UoW.Categories.Delete(entity.Id);
             UoW.Save();
         }
 
-        public void UpDate(Category entity)
+        public void UpDate(CategoryBLL entity)
         {
-            UoW.Categories.Update(entity);
+            var c = new Category() { Name = entity.Name, Id = entity.Id };
+            UoW.Categories.Update(c);
             UoW.Save();
         }
 
-        public List<Category> GetAll()
+        public List<CategoryBLL> GetAll()
         {
-            return UoW.Categories.GetAll().ToList();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Category, CategoryBLL>()).CreateMapper();
+
+            return mapper.Map <IEnumerable<Category>, List<CategoryBLL>>(UoW.Categories.GetAll());
+            UoW.Save();
         }
 
-        public Category GetCurrent(int id)
+        public CategoryBLL GetCurrent(int id)
         {
             var result = UoW.Categories.Get(id);
             if (result != null)
-                return result;
+            {
+                UoW.Save();
+                return new CategoryBLL() { Name = result.Name, Id = result.Id };
+            }
             throw new CategoryException("Current category didn't fint");
         }
     }

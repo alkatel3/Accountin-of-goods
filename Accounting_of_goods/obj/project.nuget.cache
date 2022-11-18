@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "z+RKi7kk3CT4V7LFW9ZCIeZ6PgWIPG1zfwefebTEsGSVYFxUOPnd6c50Zcf2u3JVffo2p5RyOZU7aRvv47i7fA==",
+  "dgSpecHash": "RPVGjAx8PescCVN9mImgkwEHDEfRCk+YeSQDpbf+gX9DMldUgnOmMOV2HBV9DEx7BBWIvC/qkXu5lLYipX8kLQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dell\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\castle.core\\5.1.0\\castle.core.5.1.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.0-rc.2.22472.11\\microsoft.data.sqlite.core.7.0.0-rc.2.22472.11.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.0-rc.2.22472.11\\microsoft.entityframeworkcore.7.0.0-rc.2.22472.11.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.0-rc.2.22472.11\\microsoft.entityframeworkcore.abstractions.7.0.0-rc.2.22472.11.nupkg.sha512",

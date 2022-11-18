@@ -1,58 +1,100 @@
 ﻿using BLL.Interfaces;
-using UoW;
 using DAL.Entities;
 using BLL.Exceptions;
+using DAL.Repositories;
+using BLL.Entities;
+using AutoMapper;
 
 namespace BLL
 {
-    public class GoodsController : ICreater<Goods>, IDeleter<Goods>, IUpDater<Goods>, IGiver<Goods>
+    public class GoodsController : ICreater<GoodsBLL>, IDeleter<GoodsBLL>, IUpDater<GoodsBLL>, IGiver<GoodsBLL>
     {
-        private UnitOfWork UoW;
+        private EFUnitOfWork UoW;
 
-        public GoodsController(UnitOfWork UoW)
+        public GoodsController(EFUnitOfWork UoW)
         {
             this.UoW = UoW;
         }
 
-        public void Creat(Goods entity)
+        public void Creat(GoodsBLL entity)
         {
-            UoW.Goods.Creat(entity);
+            var category = UoW.Categories.Get(entity.CategoryBLL.Id);
+            var goods = new Goods() { 
+                Name = entity.Name, Category = category,
+                Count = entity.Count, Priсe = entity.Priсe
+            };
+            UoW.Goods.Creat(goods);
             UoW.Save();
         }
 
-        public void Delete(Goods entity)
+        public void Delete(GoodsBLL entity)
         {
             UoW.Goods.Delete(entity.Id);
             UoW.Save();
         }
 
-        public void UpDate(Goods entity)
+        public void UpDate(GoodsBLL entity)
         {
-            UoW.Goods.Update(entity);
+            var category = UoW.Categories.Get(entity.CategoryBLL.Id);
+            var goods = new Goods()
+            {
+                Name = entity.Name,
+                Category = category,
+                Count = entity.Count,
+                Priсe = entity.Priсe,
+                Id=entity.Id
+            };
+            UoW.Goods.Update(goods);
             UoW.Save();
         }
 
-        public List<Goods> GetAll()
+        public List<GoodsBLL> GetAll()
         {
-            return UoW.Goods.GetAll().ToList();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Goods, GoodsBLL>()).CreateMapper();
+            
+            return mapper.Map<IEnumerable<Goods>, List<GoodsBLL>>(UoW.Goods.GetAll());
+            UoW.Save();
         }
 
-        public Goods GetCurrent(int id)
+        public GoodsBLL GetCurrent(int id)
         {
             var result = UoW.Goods.Get(id);
-            if (result != null)
-                return result;
+            if (result != null) {
+                if (result.Category == null)
+                {
+                    var c = UoW.Categories.Get(result.CategoryId);
+                    result.Category = c;
+                }
+                var category = new CategoryBLL() { Id = result.Category.Id, Name = result.Category.Name };
+                var goods = new GoodsBLL()
+                {
+                    Name = result.Name,
+                    Id = result.Id,
+                    Priсe = result.Priсe,
+                    Count = result.Count,
+                    CategoryBLL = category
+                };
+                UoW.Save();
+                return goods;
+            }
+
             throw new GoodsException("Current goods didn't fint");
         }
 
-        public List<Goods> GetAllFollowing(int standard)
+        public List<GoodsBLL> GetAllFollowing(int standard)
         {
-            return UoW.Goods.GetAllInCategory(standard).ToList();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Goods, GoodsBLL>()).CreateMapper();
+
+            return mapper.Map<IEnumerable<Goods>, List<GoodsBLL>>(UoW.Goods.Find(g => g.CategoryId == standard));
+            UoW.Save();
         }
 
-        public List<Goods> GetInStock()
+        public List<GoodsBLL> GetInStock()
         {
-            return UoW.Goods.GetInStock().ToList();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Goods, GoodsBLL>()).CreateMapper();
+
+            return mapper.Map<IEnumerable<Goods>, List<GoodsBLL>>(UoW.Goods.Find(g => g.Count > 0));
+            UoW.Save();
         }
     }
 }

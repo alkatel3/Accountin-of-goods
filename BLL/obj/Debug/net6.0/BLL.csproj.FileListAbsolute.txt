@@ -13,7 +13,5 @@ C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\BLL\obj\Debug\net6.0\BLL.genruntimeconfig.cache
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\BLL\obj\Debug\net6.0\ref\BLL.dll
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\BLL\bin\Debug\net6.0\DAL.dll
-C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\BLL\bin\Debug\net6.0\UoW.dll
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\BLL\bin\Debug\net6.0\DAL.pdb
-C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\BLL\bin\Debug\net6.0\UoW.pdb
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\BLL\obj\Debug\net6.0\BLL.csproj.CopyComplete

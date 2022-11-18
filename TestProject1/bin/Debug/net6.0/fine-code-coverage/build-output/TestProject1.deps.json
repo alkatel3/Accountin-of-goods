@@ -16,7 +16,6 @@
           "NUnit": "3.13.3",
           "NUnit.Analyzers": "3.3.0",
           "NUnit3TestAdapter": "4.2.1",
-          "UoW": "1.0.0",
           "coverlet.collector": "3.1.2"
         },
         "runtime": {
@@ -1035,8 +1034,7 @@
         "dependencies": {
           "DAL": "1.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite.Core": "7.0.0-rc.2.22472.11",
-          "Moq.AutoMock": "3.5.0-ci0287",
-          "UoW": "1.0.0"
+          "Moq.AutoMock": "3.5.0-ci0287"
         },
         "runtime": {
           "BLL.dll": {}
@@ -1050,15 +1048,6 @@
         },
         "runtime": {
           "DAL.dll": {}
-        }
-      },
-      "UoW/1.0.0": {
-        "dependencies": {
-          "DAL": "1.0.0",
-          "Moq.AutoMock": "3.5.0-ci0287"
-        },
-        "runtime": {
-          "UoW.dll": {}
         }
       }
     }
@@ -1656,11 +1645,6 @@
       "sha512": ""
     },
     "DAL/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UoW/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

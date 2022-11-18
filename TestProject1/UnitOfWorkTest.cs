@@ -1,12 +1,8 @@
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using UoW.Repositories;
-
 namespace TestProject1
 {
     public class ApplicationContextTest
     {
-        UnitOfWork UoW = null!;
+        EFUnitOfWork UoW = null!;
         Mock<DbSet<Category>> MockCategories = null!;
         Mock<DbSet<Goods>> MockGoods=null!;
         Mock<ApplicationContext> MockContext = null!;
@@ -47,30 +43,161 @@ namespace TestProject1
 
             UoW.Goods.Creat(goods);
 
-            MockGoods.Verify(m => m.Add(It.IsAny<Goods>()), Times.Once());
+            MockGoods.Verify(m => m.Add(goods), Times.Once());
         }
 
         [Test]
         public void CategoriesGet_TryGetOneCategoryById_MethodFindFromMockOfApplicationContextCalledOnce()
         {
+            var c = new Category() { Name = "123", Id=10 };
+            MockCategories.Setup(c => c.Find(10)).Returns(c);
             MockContext.Setup(c => c.Categories).Returns(MockCategories.Object);
             UoW = new(MockContext.Object);
 
-            var Actual = UoW.Categories.Get(0);
+            var Actual = UoW.Categories.Get(10);
 
-            MockCategories.Verify(m => m.Find(0), Times.Once());
+            Actual.Should().Be(c);
         }
 
         [Test]
         public void GoodsGet_TryGetOneGoodsById_MethodFindFromMockOfApplicationContextCalledOnce()
         {
+            var g = new Goods()
+            {
+                Name = "Any",
+                Priñe = 10,
+                Count = 10,
+                Id = 10
+            };
+            MockGoods.Setup(m => m.Find(10)).Returns(g);
             MockContext.Setup(c => c.Goods).Returns(MockGoods.Object);
             UoW = new(MockContext.Object);
 
-            var Actual = UoW.Goods.Get(0);
+            var Actual = UoW.Goods.Get(10);
 
-            MockGoods.Verify(m => m.Find(0), Times.Once());
+            Actual.Should().Be(g);
         }
+
+        [Test]
+        public void CategoriesUpdate_TryUpdateOneCategoryById_MethodUpdateFromMockOfApplicationContextCalledOnce()
+        {
+            MockContext.Setup(c => c.Categories).Returns(MockCategories.Object);
+            UoW = new(MockContext.Object);
+            var c = new Category() { Name = "123" };
+
+            UoW.Categories.Update(c);
+
+            MockCategories.Verify(m => m.Update(c), Times.Once());
+        }
+
+        [Test]
+        public void GoodsUpdate_TryUpdateOneGoodsById_MethodUpdateFromMockOfApplicationContextCalledOnce()
+        {
+            MockContext.Setup(c => c.Goods).Returns(MockGoods.Object);
+            UoW = new(MockContext.Object);
+            var g = new Goods()
+            {
+                Name = "Any",
+                Priñe = 10,
+                Count = 10,
+            };
+
+            UoW.Goods.Update(g);
+
+            MockGoods.Verify(m => m.Update(g), Times.Once());
+        }
+
+        [Test]
+        public void CategoryDelete_TryDeleteOneCategoryById_MethodDeleteFromMockOfApplicationContextCalledOnce()
+        {
+            var c = new Category() { Name = "123", Id=10 };
+            MockCategories.Setup(m => m.Find(10)).Returns(c);
+            MockContext.Setup(c => c.Categories).Returns(MockCategories.Object);
+            UoW = new(MockContext.Object);
+
+            UoW.Categories.Delete(10);
+
+            MockCategories.Verify(m => m.Remove(c), Times.Once());
+        }
+
+        [Test]
+        public void GoodsDelete_TryDeleteOneGoodsById_MethodDeleteFromMockOfApplicationContextCalledOnce()
+        {
+            var g = new Goods()
+            {
+                Name = "Any",
+                Priñe = 10,
+                Count = 10,
+                Id=10
+            };
+            MockGoods.Setup(m=>m.Find(10)).Returns(g);
+            MockContext.Setup(c => c.Goods).Returns(MockGoods.Object);
+            UoW = new(MockContext.Object);
+
+            UoW.Goods.Delete(10);
+
+            MockGoods.Verify(m => m.Remove(g), Times.Once());
+        }
+
+        [Test]
+        public void CategoriesGetAll_TryModelGetingAllElementFromDbWithUsingList_GetListWithThirdElement()
+        {
+            var data = new List<Category>
+            {
+                new Category { Name = "BBB" },
+                new Category { Name = "ZZZ" },
+                new Category { Name = "AAA" },
+            }.AsQueryable();
+            MockCategories.As<IQueryable<Category>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
+            MockContext.Setup(c => c.Categories).Returns(MockCategories.Object);
+            UoW = new(MockContext.Object);
+
+            var goods = UoW.Categories.GetAll().ToList();
+
+            goods.Count.Should().Be(3);
+            goods.Should().BeEquivalentTo(data);
+        }
+
+        [Test]
+        public void GoodsGetAll_TryModelGetingAllElementFromDbWithUsingList_GetListWithThirdElement()
+        {
+            var data = new List<Goods>
+            {
+                new Goods() { Name="Any", Count=1, Priñe=1 },
+                new Goods() { Name="Any", Count=2, Priñe=2 },
+                new Goods() { Name="Any", Count=3, Priñe=3 }
+            }.AsQueryable();
+            MockGoods.As<IQueryable<Goods>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
+            MockContext.Setup(c => c.Goods).Returns(MockGoods.Object);
+            UoW = new(MockContext.Object);
+
+            var categories = UoW.Goods.GetAll().ToList();
+
+            categories.Count.Should().Be(3);
+            categories.Should().BeEquivalentTo(data);
+        }
+
+        //[Test]
+        //public void GoodsFind_TryModelGetingSomeElementByPredicateFromDbWithUsingList_GetListWithThirdElement()
+        //{
+        //    var data = new List<Goods>
+        //    {
+        //        new Goods() { Name="Any", Count=1, Priñe=1 },
+        //        new Goods() { Name="Any", Count=2, Priñe=2 },
+        //        new Goods() { Name="Any", Count=3, Priñe=3 }
+        //    };//.AsQueryable();
+
+        //    var predicate = (Goods g) => g.Count > 0;
+        //    MockGoods.Setup(g => g.Where(c=>c.Count>0)).Returns(data.Where(predicate).AsQueryable());
+        //    //MockGoods.As<IQueryable<Goods>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
+        //    MockContext.Setup(c => c.Goods).Returns(MockGoods.Object);
+        //    UoW = new(MockContext.Object);
+
+        //    var categories = UoW.Goods.Find(predicate).ToList();
+
+        //    categories.Count.Should().Be(3);
+        //    categories.Should().BeEquivalentTo(data);
+        //}
 
         [Test]
         public void Save_TrySaveMockDB_MethodSaveChangesFromMockOfApplicationContextCalledOnce()
@@ -82,29 +209,6 @@ namespace TestProject1
             MockContext.Verify(m => m.SaveChanges(), Times.Once());
         }
 
-        [Test]
-        public void GetAllBlogs_orders_by_name()
-        {
-            var data = new List<Category>
-            {
-                new Category { Name = "BBB" },
-                new Category { Name = "ZZZ" },
-                new Category { Name = "AAA" },
-            }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Category>>();
-            mockSet.As<IQueryable<Category>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-            var mockContext = new Mock<ApplicationContext>("Data Source=Goods.db");
-            mockContext.Setup(c => c.Categories).Returns(mockSet.Object);
-
-            UoW = new(mockContext.Object);
-            var categories = UoW.Categories.GetAll().ToList();
-
-            Assert.AreEqual(3, categories.Count());
-            Assert.AreEqual("BBB", categories[0].Name);
-            Assert.AreEqual("ZZZ", categories[1].Name);
-            Assert.AreEqual("AAA", categories[2].Name);
-        }
     }
 }

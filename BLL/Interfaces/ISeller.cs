@@ -1,7 +1,7 @@
 ﻿namespace BLL.Interfaces
 {
-    public interface ISeller
+    public interface ISeller<T>
     {
-        void Sell(int Count, int id);
+        void Sell(int Count, T entity);
     }
 }

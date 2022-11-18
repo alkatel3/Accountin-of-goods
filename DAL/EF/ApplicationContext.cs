@@ -1,7 +1,7 @@
 ﻿using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL
+namespace DAL.EF
 {
     public class ApplicationContext : DbContext
     {
@@ -10,7 +10,7 @@ namespace DAL
 
         private string ConnectionString;
 
-        public ApplicationContext(string connectionString= "Data Source=Goods.db")
+        public ApplicationContext(string connectionString = "Data Source=Goods.db"):base()
         {
             ConnectionString = "Data Source=Goods.db";
         }
@@ -18,16 +18,6 @@ namespace DAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(ConnectionString);
-        }
-
-        public void MarkAsModified(Goods item)
-        {
-            Entry(item).State = EntityState.Modified;
-        }
-
-        public void MarkAsModified(Category item)
-        {
-            Entry(item).State = EntityState.Modified;
         }
     }
 }

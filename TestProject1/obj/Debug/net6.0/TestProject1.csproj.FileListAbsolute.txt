@@ -125,9 +125,7 @@ C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\TestProject1\obj\Debug\net6.0\TestProject1.genruntimeconfig.cache
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\TestProject1\obj\Debug\net6.0\ref\TestProject1.dll
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\TestProject1\bin\Debug\net6.0\BLL.dll
-C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\TestProject1\bin\Debug\net6.0\UoW.dll
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\TestProject1\bin\Debug\net6.0\BLL.pdb
-C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\TestProject1\bin\Debug\net6.0\UoW.pdb
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\TestProject1\bin\Debug\net6.0\Castle.Core.dll
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\TestProject1\bin\Debug\net6.0\Moq.dll
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\TestProject1\bin\Debug\net6.0\System.Diagnostics.EventLog.dll

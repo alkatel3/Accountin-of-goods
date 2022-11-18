@@ -1,24 +1,24 @@
 ﻿using BLL.Interfaces;
-using UoW;
+using DAL.Repositories;
+using BLL.Entities;
 
 namespace BLL
 {
-    public class GoodsProvider:IProvider
+    public class GoodsProvider:IProvider<GoodsBLL>
     {
-        UnitOfWork UoW;
-        public GoodsProvider(UnitOfWork UoW)
+        EFUnitOfWork UoW;
+        public GoodsProvider(EFUnitOfWork UoW)
         {
             this.UoW = UoW;
         }
 
-        public void Deliver(int Count, int id)
+        public void Deliver(int Count, GoodsBLL goods)
         {
             Thread.Sleep(60000);
-            var goods = new GoodsController(UoW);
-            var current = goods.GetCurrent(id);
+            var goodsController = new GoodsController(UoW);
+            var current = goodsController.GetCurrent(goods.Id);
             current.Count += Count;
-            UoW.Goods.Update(current);
-            UoW.Save();
+            goodsController.UpDate(goods);
         }
     }
 }
