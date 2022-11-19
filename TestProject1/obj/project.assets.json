@@ -662,6 +662,15 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
+      "Ninject/4.0.0-beta.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Ninject.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Ninject.dll": {}
+        }
+      },
       "NonBlocking/2.1.0": {
         "type": "package",
         "dependencies": {
@@ -1300,7 +1309,8 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.0",
           "DAL": "1.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite.Core": "7.0.0-rc.2.22472.11",
-          "Moq.AutoMock": "3.5.0-ci0287"
+          "Moq.AutoMock": "3.5.0-ci0287",
+          "Ninject": "4.0.0-beta.1"
         },
         "compile": {
           "bin/placeholder/BLL.dll": {}
@@ -1315,7 +1325,8 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Sqlite.Core": "7.0.0-rc.2.22472.11",
           "Moq": "4.18.2",
-          "Moq.AutoMock": "3.5.0-ci0287"
+          "Moq.AutoMock": "3.5.0-ci0287",
+          "Ninject": "4.0.0-beta.1"
         },
         "compile": {
           "bin/placeholder/DAL.dll": {}
@@ -2748,6 +2759,23 @@
         "newtonsoft.json.10.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
+      ]
+    },
+    "Ninject/4.0.0-beta.1": {
+      "sha512": "nLUSEPhzXRYrw5PKB6wQIOTWN2dgvlvjjzr1QaQC1Bq8J/ca2wKdURoUWwFwAuQjG4hxP7aEeBscmPCF/OgYBQ==",
+      "type": "package",
+      "path": "ninject/4.0.0-beta.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net46/Ninject.dll",
+        "lib/net46/Ninject.xml",
+        "lib/net6.0/Ninject.dll",
+        "lib/net6.0/Ninject.xml",
+        "lib/netstandard2.0/Ninject.dll",
+        "lib/netstandard2.0/Ninject.xml",
+        "ninject.4.0.0-beta.1.nupkg.sha512",
+        "ninject.nuspec"
       ]
     },
     "NonBlocking/2.1.0": {
@@ -5047,6 +5075,7 @@
       "NUnit >= 3.13.3",
       "NUnit.Analyzers >= 3.3.0",
       "NUnit3TestAdapter >= 4.2.1",
+      "Ninject >= 4.0.0-beta.1",
       "coverlet.collector >= 3.1.2"
     ]
   },
@@ -5124,6 +5153,10 @@
           "NUnit3TestAdapter": {
             "target": "Package",
             "version": "[4.2.1, )"
+          },
+          "Ninject": {
+            "target": "Package",
+            "version": "[4.0.0-beta.1, )"
           },
           "coverlet.collector": {
             "target": "Package",

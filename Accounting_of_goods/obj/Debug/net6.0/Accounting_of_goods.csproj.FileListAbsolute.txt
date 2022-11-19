@@ -74,3 +74,10 @@ C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\Accounting_of_goods\bin\Debug\net6.0\NonBlocking.dll
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\Accounting_of_goods\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\Accounting_of_goods\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\Accounting_of_goods\bin\Debug\net6.0\Ninject.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\Accounting_of_goods\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\Accounting_of_goods\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\Accounting_of_goods\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\Accounting_of_goods\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\Accounting_of_goods\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\Lab3\Accounting_of_goods\Accounting_of_goods\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll

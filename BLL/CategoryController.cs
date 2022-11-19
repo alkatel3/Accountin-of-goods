@@ -7,7 +7,7 @@ using AutoMapper;
 
 namespace BLL
 {
-    public class CategoryController : ICreater<CategoryBLL>, IDeleter<CategoryBLL>, IUpDater<CategoryBLL>, IGiver<CategoryBLL>
+    public class CategoryController : ICreater<CategoryBLL>, IDeleter<CategoryBLL>, IUpDater<CategoryBLL>, IGiver<CategoryBLL>, IDisposable
     {
         private EFUnitOfWork UoW;
 
@@ -53,6 +53,11 @@ namespace BLL
                 return new CategoryBLL() { Name = result.Name, Id = result.Id };
             }
             throw new CategoryException("Current category didn't fint");
+        }
+
+        public void Dispose()
+        {
+            UoW.Dispose();
         }
     }
 }

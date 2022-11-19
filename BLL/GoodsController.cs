@@ -7,7 +7,7 @@ using AutoMapper;
 
 namespace BLL
 {
-    public class GoodsController : ICreater<GoodsBLL>, IDeleter<GoodsBLL>, IUpDater<GoodsBLL>, IGiver<GoodsBLL>
+    public class GoodsController : ICreater<GoodsBLL>, IDeleter<GoodsBLL>, IUpDater<GoodsBLL>, IGiver<GoodsBLL>, IDisposable
     {
         private EFUnitOfWork UoW;
 
@@ -44,8 +44,12 @@ namespace BLL
                 Priсe = entity.Priсe,
                 Id=entity.Id
             };
-            UoW.Goods.Update(goods);
-            UoW.Save();
+            var g = UoW.Goods.Get(goods.Id);
+            if (g != null)
+            {
+                UoW.Goods.Update(goods);
+                UoW.Save();
+            }
         }
 
         public List<GoodsBLL> GetAll()
@@ -95,6 +99,11 @@ namespace BLL
 
             return mapper.Map<IEnumerable<Goods>, List<GoodsBLL>>(UoW.Goods.Find(g => g.Count > 0));
             UoW.Save();
+        }
+
+        public void Dispose()
+        {
+            UoW.Dispose();
         }
     }
 }

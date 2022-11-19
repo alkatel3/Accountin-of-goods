@@ -319,6 +319,15 @@
           "lib/netstandard2.0/Moq.AutoMock.dll": {}
         }
       },
+      "Ninject/4.0.0-beta.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Ninject.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Ninject.dll": {}
+        }
+      },
       "NonBlocking/2.1.0": {
         "type": "package",
         "dependencies": {
@@ -976,6 +985,23 @@
         "moq.automock.nuspec"
       ]
     },
+    "Ninject/4.0.0-beta.1": {
+      "sha512": "nLUSEPhzXRYrw5PKB6wQIOTWN2dgvlvjjzr1QaQC1Bq8J/ca2wKdURoUWwFwAuQjG4hxP7aEeBscmPCF/OgYBQ==",
+      "type": "package",
+      "path": "ninject/4.0.0-beta.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net46/Ninject.dll",
+        "lib/net46/Ninject.xml",
+        "lib/net6.0/Ninject.dll",
+        "lib/net6.0/Ninject.xml",
+        "lib/netstandard2.0/Ninject.dll",
+        "lib/netstandard2.0/Ninject.xml",
+        "ninject.4.0.0-beta.1.nupkg.sha512",
+        "ninject.nuspec"
+      ]
+    },
     "NonBlocking/2.1.0": {
       "sha512": "Ih6NcB++JPLOPyFMSQjBpE5gSQZiuTIjZDOyxz5xWII03WKtA1H+6na29vkeihE+mWQf6KOjOIeCAXZxyFj2zg==",
       "type": "package",
@@ -1209,7 +1235,8 @@
       "Microsoft.EntityFrameworkCore.Sqlite.Core >= 7.0.0-rc.2.22472.11",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.0-rc.2.22472.11",
       "Moq >= 4.18.2",
-      "Moq.AutoMock >= 3.5.0-ci0287"
+      "Moq.AutoMock >= 3.5.0-ci0287",
+      "Ninject >= 4.0.0-beta.1"
     ]
   },
   "packageFolders": {
@@ -1273,6 +1300,10 @@
           "Moq.AutoMock": {
             "target": "Package",
             "version": "[3.5.0-ci0287, )"
+          },
+          "Ninject": {
+            "target": "Package",
+            "version": "[4.0.0-beta.1, )"
           }
         },
         "imports": [

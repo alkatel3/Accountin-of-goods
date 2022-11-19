@@ -10,9 +10,9 @@ namespace DAL.EF
 
         private string ConnectionString;
 
-        public ApplicationContext(string connectionString = "Data Source=Goods.db"):base()
+        public ApplicationContext(string connectionString = "Data Source=Goods.db")
         {
-            ConnectionString = "Data Source=Goods.db";
+            ConnectionString = connectionString;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

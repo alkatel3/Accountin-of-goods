@@ -65,6 +65,10 @@
             "Moq.AutoMock": {
               "target": "Package",
               "version": "[3.5.0-ci0287, )"
+            },
+            "Ninject": {
+              "target": "Package",
+              "version": "[4.0.0-beta.1, )"
             }
           },
           "imports": [
@@ -143,6 +147,10 @@
             "Moq.AutoMock": {
               "target": "Package",
               "version": "[3.5.0-ci0287, )"
+            },
+            "Ninject": {
+              "target": "Package",
+              "version": "[4.0.0-beta.1, )"
             }
           },
           "imports": [

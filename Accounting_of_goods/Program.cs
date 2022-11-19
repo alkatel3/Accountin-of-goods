@@ -4,6 +4,9 @@ using BLL;
 using DAL.Repositories;
 using DAL.EF;
 using BLL.Entities;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using DAL.Entities;
 
 namespace Accounting_of_goods
 {
@@ -140,6 +143,7 @@ namespace Accounting_of_goods
                     }
                     break;
             }
+            UoW.Dispose();
             return true;
         }
         static void GoodsEvents(GoodsBLL goods)
@@ -185,6 +189,7 @@ namespace Accounting_of_goods
                     Seller.Sell(Count, goods);
                     break;
             }
+            UoW.Dispose();
         }
         static void CategoryEvents(CategoryBLL category)
         {
@@ -214,6 +219,7 @@ namespace Accounting_of_goods
                         Categories.Delete(category);
                     break;
             }
+            UoW.Dispose();
         }
 
         static GoodsBLL CteatLocalGoods(CategoryController Categories)
@@ -236,6 +242,7 @@ namespace Accounting_of_goods
                 Count = goodsCount,
                 CategoryBLL = goodsCategory
             };
+
             return NewGoods;
         }
         static CategoryBLL CreatLocelCategory()

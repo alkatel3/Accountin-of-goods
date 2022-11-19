@@ -1,30 +1,31 @@
 ﻿using BLL.Interfaces;
 using DAL.Repositories;
 using BLL.Entities;
+using DAL.EF;
 
 namespace BLL
 {
     public class GoodsSeller : ISeller<GoodsBLL>
     {
         EFUnitOfWork UoW;
-        GoodsProvider provider;
+        GoodsController goodsController;
         public GoodsSeller(EFUnitOfWork UoW)
         {
             this.UoW = UoW;
-            provider = new GoodsProvider(UoW);
+            goodsController = new GoodsController(UoW);
         }
 
         public async void Sell(int Count, GoodsBLL goods)
         {
-            var goodsController =new GoodsController(UoW);
-            var current = goodsController.GetCurrent(goods.Id);
-            current.Count -= Count;
-            //UoW.Goods.Update(goods);
+            goods.Count -= Count;
             goodsController.UpDate(goods);
-            if (current.Count < 0)
+            if (goods.Count < 0)
             {
+                var uow = new EFUnitOfWork(new ApplicationContext());
+                GoodsProvider provider= new GoodsProvider(uow);
                 await Task.Run(()=> provider.Deliver(Count*2,goods));
             }
+            
         }
     }
 }

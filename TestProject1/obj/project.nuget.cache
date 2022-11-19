@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2cvDKtuo4tuQdQZlD1+z9EeyBdY3TA6BFbVQzbZLGrRMZXG3knm+h7erwAKL3i+V4r3WJEigszH//xX7jvV8Dg==",
+  "dgSpecHash": "PaZQyMFm7tYwDiERlSs6Hgd8DcSCay2HOUFzdcgiZQaOVNPMt8W9e8QkzGLvAeLAFAcII3kOWZtxHQIuxBBNAw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\TestProject1\\TestProject1.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,7 @@
     "C:\\Users\\Dell\\.nuget\\packages\\moq.automock\\3.5.0-ci0287\\moq.automock.3.5.0-ci0287.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\newtonsoft.json\\10.0.3\\newtonsoft.json.10.0.3.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\ninject\\4.0.0-beta.1\\ninject.4.0.0-beta.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\nonblocking\\2.1.0\\nonblocking.2.1.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\nuget.frameworks\\5.11.0\\nuget.frameworks.5.11.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512",

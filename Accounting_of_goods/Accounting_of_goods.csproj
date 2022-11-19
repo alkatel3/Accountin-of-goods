@@ -13,7 +13,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     <PackageReference Include="Moq.AutoMock" Version="3.5.0-ci0287" />
+    <PackageReference Include="Ninject" Version="4.0.0-beta.1" />
   </ItemGroup>
 
   <ItemGroup>

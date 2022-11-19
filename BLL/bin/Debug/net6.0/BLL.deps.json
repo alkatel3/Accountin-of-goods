@@ -12,7 +12,8 @@
           "DAL": "1.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite.Core": "7.0.0-rc.2.22472.11",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.0-rc.2.22472.11",
-          "Moq.AutoMock": "3.5.0-ci0287"
+          "Moq.AutoMock": "3.5.0-ci0287",
+          "Ninject": "4.0.0-beta.1"
         },
         "runtime": {
           "BLL.dll": {}
@@ -287,6 +288,14 @@
           }
         }
       },
+      "Ninject/4.0.0-beta.1": {
+        "runtime": {
+          "lib/net6.0/Ninject.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.1"
+          }
+        }
+      },
       "NonBlocking/2.1.0": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
@@ -376,7 +385,8 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Sqlite.Core": "7.0.0-rc.2.22472.11",
           "Moq": "4.18.2",
-          "Moq.AutoMock": "3.5.0-ci0287"
+          "Moq.AutoMock": "3.5.0-ci0287",
+          "Ninject": "4.0.0-beta.1"
         },
         "runtime": {
           "DAL.dll": {}
@@ -571,6 +581,13 @@
       "sha512": "sha512-Eza/f9LXyV5FfNkrhZeZWNBqmaKHfFpPCvcr9xcRAlMa/Gx8Bfi57QAu+15mQtysBDIpXy7yg9dKU4q63g8cLw==",
       "path": "moq.automock/3.5.0-ci0287",
       "hashPath": "moq.automock.3.5.0-ci0287.nupkg.sha512"
+    },
+    "Ninject/4.0.0-beta.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nLUSEPhzXRYrw5PKB6wQIOTWN2dgvlvjjzr1QaQC1Bq8J/ca2wKdURoUWwFwAuQjG4hxP7aEeBscmPCF/OgYBQ==",
+      "path": "ninject/4.0.0-beta.1",
+      "hashPath": "ninject.4.0.0-beta.1.nupkg.sha512"
     },
     "NonBlocking/2.1.0": {
       "type": "package",
