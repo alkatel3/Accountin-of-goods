@@ -31,7 +31,6 @@ namespace DAL.Repositories
 
         public void Update(Category category)
         {
-            //db.Entry(category).State = EntityState.Modified;
             db.Categories.Update(category);
         }
 

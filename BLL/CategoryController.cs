@@ -42,6 +42,7 @@ namespace BLL
 
             return mapper.Map <IEnumerable<Category>, List<CategoryBLL>>(UoW.Categories.GetAll());
             UoW.Save();
+            //UoW.Dispose();
         }
 
         public CategoryBLL GetCurrent(int id)

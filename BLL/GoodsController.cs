@@ -44,12 +44,8 @@ namespace BLL
                 Priсe = entity.Priсe,
                 Id=entity.Id
             };
-            var g = UoW.Goods.Get(goods.Id);
-            if (g != null)
-            {
-                UoW.Goods.Update(goods);
-                UoW.Save();
-            }
+            UoW.Goods.Update(goods);
+            UoW.Save();
         }
 
         public List<GoodsBLL> GetAll()
@@ -64,11 +60,10 @@ namespace BLL
         {
             var result = UoW.Goods.Get(id);
             if (result != null) {
-                //if (result.Category == null)
-                //{
-                //    var c = UoW.Categories.Get(result.CategoryId);
-                //    result.Category = c;
-                //}
+                if (result.Category == null)
+                {
+                    result.Category = UoW.Categories.Get(result.CategoryId);
+                }
                 var category = new CategoryBLL() { Id = result.Category.Id, Name = result.Category.Name };
                 var goods = new GoodsBLL()
                 {

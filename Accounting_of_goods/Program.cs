@@ -1,5 +1,4 @@
-﻿//using DAL.Entities;
-using static System.Console;
+﻿using static System.Console;
 using BLL;
 using DAL.Repositories;
 using DAL.EF;
@@ -10,6 +9,7 @@ using DAL.Entities;
 
 namespace Accounting_of_goods
 {
+
     internal class Program
     {
         static void Main(string[] args)
@@ -143,7 +143,7 @@ namespace Accounting_of_goods
                     }
                     break;
             }
-            UoW.Dispose();
+            //UoW.Dispose();
             return true;
         }
         static void GoodsEvents(GoodsBLL goods)
@@ -189,7 +189,6 @@ namespace Accounting_of_goods
                     Seller.Sell(Count, goods);
                     break;
             }
-            UoW.Dispose();
         }
         static void CategoryEvents(CategoryBLL category)
         {
@@ -219,7 +218,6 @@ namespace Accounting_of_goods
                         Categories.Delete(category);
                     break;
             }
-            UoW.Dispose();
         }
 
         static GoodsBLL CteatLocalGoods(CategoryController Categories)
@@ -252,13 +250,5 @@ namespace Accounting_of_goods
             CategoryBLL NewCategory = new CategoryBLL() { Name = categoryName };
             return NewCategory;
         }
-
-
-
-
-
-
-
-
     }
 }

@@ -19,7 +19,7 @@ namespace BLL
         {
             goods.Count -= Count;
             goodsController.UpDate(goods);
-            if (goods.Count < 0)
+            if (goods.Count <= 0)
             {
                 var uow = new EFUnitOfWork(new ApplicationContext());
                 GoodsProvider provider= new GoodsProvider(uow);

@@ -39,17 +39,22 @@ namespace Accounting_of_goods
         }
         public static string GetStrint(string ToUser)
         {
-            WriteLine(ToUser);
+            Write(ToUser);
             var result = ReadLine();
             return result;
         }
         public static void ShowGoods(List<GoodsBLL> goods)
         {
-            WriteLine("\t\tName\t\tCount\t\tPrice");/*\t\tCategory*/
+            WriteLine("\t\tName\t\tCount\t\tPrice");
             int i = 1;
             foreach (var item in goods)
             {
-                WriteLine((i++) + "\t\t" + item.Name + "\t\t" + item.Count + "\t\t" + item.Priсe + "\t\t" /*+ item.Category?.Name*/);
+                var count = item.Count;
+                if (count < 0)
+                {
+                    count = 0;
+                }
+                WriteLine((i++) + "\t\t" + item.Name + "\t\t" + count + "\t\t" + item.Priсe + "\t\t");
             }
         }
 

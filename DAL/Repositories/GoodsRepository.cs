@@ -19,16 +19,6 @@ namespace DAL.Repositories
             return db.Goods.Include(g => g.Category);
         }
 
-        //public IEnumerable<Goods> GetAllInCategory(int CategoryId)
-        //{
-        //    return db.Goods.Where(goods => goods.CategoryId.Equals(CategoryId)).Include(g => g.Category);
-        //}
-
-        //public IEnumerable<Goods> GetInStock()
-        //{
-        //    return db.Goods.Where(goods => goods.Count > 0).Include(g => g.Category);
-        //}
-
         public Goods? Get(int id)
         {
             var goods = db.Goods.Find(id);
