@@ -4,7 +4,7 @@ using BLL.Entities;
 
 namespace BLL
 {
-    public class GoodsProvider:IProvider<GoodsBLL>
+    public class GoodsProvider:IProvider<GoodsBLL>, IDisposable
     {
         EFUnitOfWork UoW;
         GoodsController goodsController;
@@ -16,9 +16,14 @@ namespace BLL
 
         public void Deliver(int Count, GoodsBLL goods)
         {
-            Thread.Sleep(60000);
+            Thread.Sleep(30000);
             goods.Count += Count;
             goodsController.UpDate(goods);
+        }
+
+        public void Dispose()
+        {
+            UoW.Dispose();
         }
     }
 }

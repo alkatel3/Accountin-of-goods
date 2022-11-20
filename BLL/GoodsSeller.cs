@@ -5,7 +5,7 @@ using DAL.EF;
 
 namespace BLL
 {
-    public class GoodsSeller : ISeller<GoodsBLL>
+    public class GoodsSeller : ISeller<GoodsBLL>, IDisposable
     {
         EFUnitOfWork UoW;
         GoodsController goodsController;
@@ -25,7 +25,11 @@ namespace BLL
                 GoodsProvider provider= new GoodsProvider(uow);
                 await Task.Run(()=> provider.Deliver(Count*2,goods));
             }
-            
+        }
+        
+        public void Dispose()
+        {
+            UoW.Dispose();
         }
     }
 }

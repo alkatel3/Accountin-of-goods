@@ -177,27 +177,56 @@ namespace TestProject1
             categories.Should().BeEquivalentTo(data);
         }
 
-        //[Test]
-        //public void GoodsFind_TryModelGetingSomeElementByPredicateFromDbWithUsingList_GetListWithThirdElement()
-        //{
-        //    var data = new List<Goods>
-        //    {
-        //        new Goods() { Name="Any", Count=1, Priñe=1 },
-        //        new Goods() { Name="Any", Count=2, Priñe=2 },
-        //        new Goods() { Name="Any", Count=3, Priñe=3 }
-        //    };//.AsQueryable();
+        [Test]
+        public void GoodsFind_TryModelGetingSomeElementByPredicateFromDbWithUsingList_GetListWithThirdElement()
+        {
+            var data = new List<Goods>
+            {
+                new Goods() { Name="Any", Count=-1, Priñe=1 },
+                new Goods() { Name="Any", Count=2, Priñe=2 },
+                new Goods() { Name="Any", Count=3, Priñe=3 }
+            }.AsQueryable();
+            var expected = new List<Goods>
+            {
+                data.ToList()[1],
+                data.ToList()[2]
+            };
 
-        //    var predicate = (Goods g) => g.Count > 0;
-        //    MockGoods.Setup(g => g.Where(c=>c.Count>0)).Returns(data.Where(predicate).AsQueryable());
-        //    //MockGoods.As<IQueryable<Goods>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-        //    MockContext.Setup(c => c.Goods).Returns(MockGoods.Object);
-        //    UoW = new(MockContext.Object);
+            var predicate = (Goods g) => g.Count > 0;
+            MockGoods.As<IQueryable<Goods>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
+            MockContext.Setup(c => c.Goods).Returns(MockGoods.Object);
+            UoW = new(MockContext.Object);
 
-        //    var categories = UoW.Goods.Find(predicate).ToList();
+            var actual = UoW.Goods.Find(predicate).ToList();
 
-        //    categories.Count.Should().Be(3);
-        //    categories.Should().BeEquivalentTo(data);
-        //}
+            actual.Count.Should().Be(2);
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Test]
+        public void CategoriesFind_TryModelGetingSomeElementByPredicateFromDbWithUsingList_GetListWithThirdElement()
+        {
+            var data = new List<Category>
+            {
+                new Category() { Name="Any", Id=1 },
+                new Category() { Name="Any", Id=2 },
+                new Category() { Name="Any", Id=3 }
+            }.AsQueryable();
+            var expected = new List<Category>
+            {
+                data.ToList()[1]
+            };
+
+            var predicate = (Category g) => g.Id==2;
+            MockCategories.As<IQueryable<Category>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
+            MockContext.Setup(c => c.Categories).Returns(MockCategories.Object);
+            UoW = new(MockContext.Object);
+
+            var actual = UoW.Categories.Find(predicate).ToList();
+
+            actual.Count.Should().Be(1);
+            actual.Should().BeEquivalentTo(expected);
+        }
 
         [Test]
         public void Save_TrySaveMockDB_MethodSaveChangesFromMockOfApplicationContextCalledOnce()
@@ -208,7 +237,5 @@ namespace TestProject1
 
             MockContext.Verify(m => m.SaveChanges(), Times.Once());
         }
-
-
     }
 }

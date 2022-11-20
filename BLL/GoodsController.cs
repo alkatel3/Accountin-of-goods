@@ -64,11 +64,11 @@ namespace BLL
         {
             var result = UoW.Goods.Get(id);
             if (result != null) {
-                if (result.Category == null)
-                {
-                    var c = UoW.Categories.Get(result.CategoryId);
-                    result.Category = c;
-                }
+                //if (result.Category == null)
+                //{
+                //    var c = UoW.Categories.Get(result.CategoryId);
+                //    result.Category = c;
+                //}
                 var category = new CategoryBLL() { Id = result.Category.Id, Name = result.Category.Name };
                 var goods = new GoodsBLL()
                 {

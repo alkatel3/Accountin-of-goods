@@ -16,7 +16,7 @@ namespace DAL.Repositories
 
         public IEnumerable<Goods> GetAll()
         {
-            return db.Goods.Include(g => g.Category).AsNoTracking();
+            return db.Goods.Include(g => g.Category);
         }
 
         //public IEnumerable<Goods> GetAllInCategory(int CategoryId)
@@ -31,7 +31,7 @@ namespace DAL.Repositories
 
         public Goods? Get(int id)
         {
-            var goods = db.Goods.Where(g => g.Id == id).AsNoTracking().SingleOrDefault();
+            var goods = db.Goods.Find(id);
             return goods ?? default;
         }
 
@@ -42,7 +42,6 @@ namespace DAL.Repositories
 
         public void Update(Goods goods)
         {
-            db.Attach(goods);
             db.Goods.Update(goods);
         }
 
