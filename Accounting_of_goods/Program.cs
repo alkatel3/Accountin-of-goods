@@ -1,27 +1,29 @@
-﻿using static System.Console;
+﻿using static Accounting_of_goods.ConsoleController;
 using BLL;
 using DAL.Repositories;
 using DAL.EF;
 using BLL.Entities;
-using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore;
-using DAL.Entities;
 
 namespace Accounting_of_goods
 {
 
     internal class Program
     {
+        static EFUnitOfWork UoW = new EFUnitOfWork(new ApplicationContext());
+        static GoodsController Goods = new GoodsController(UoW);
+        static CategoryController Categories = new CategoryController(UoW);
+
         static void Main(string[] args)
         {
             while (BaseEvents())
             {
-                WriteLine();
+                Write("\n");
             }
         }
-        static ConsoleKey UserWish()
+
+        static bool BaseEvents()
         {
-            WriteLine("What do you wish? (Enter number)\n" +
+            var result=UserWish("What do you wish? (Enter number)\n" +
                 "1. Get all goods\n" +
                 "2. Get all categories\n" +
                 "3. Get goods in stock\n" +
@@ -30,130 +32,103 @@ namespace Accounting_of_goods
                 "6. Creat new category\n" +
                 "7. Creat new goods\n" +
                 "8. Select category\n" +
-                "0. Exit");
-            var result = ReadKey().Key;
-            return result;
-        }
-        static ConsoleKey UserWishGoods()
-        {
-            WriteLine("What do you wish? (Enter number)\n" +
-                "1. Change goods\n" +
-                "2. Delete goods\n" +
-                "3. Sell goods\n" +
-                "0. Exit");
-            var result = ReadKey().Key;
-            return result;
-        }
-        static ConsoleKey UserWishCategory()
-        {
-            WriteLine("What do you wish? (Enter number)\n" +
-                "1. Change category\n" +
-                "2. Delete category\n" +
-                "0. Exit");
-            var result = ReadKey().Key;
-            return result;
-        }
-
-        static bool BaseEvents()
-        {
-            var UoW = new EFUnitOfWork(new ApplicationContext());
-            var goodsController = new GoodsController(UoW);
-            var categoriesController = new CategoryController(UoW);
-            var result = UserWish();
+                "0. Exit\n");
 
             switch (result)
             {
                 case ConsoleKey.D0:
                 case ConsoleKey.NumPad0:
+                    Goods.Dispose();
+                    Categories.Dispose();
                     return false;
 
                 case ConsoleKey.D1:
                 case ConsoleKey.NumPad1:
-                    var goods = goodsController.GetAll();
+                    var goods = Goods.GetAll();
                     Clear();
-                    ConsoleController.ShowGoods(goods);
+                    ShowGoods(goods);
                     break;
 
                 case ConsoleKey.D2:
                 case ConsoleKey.NumPad2:
-                    var categories = categoriesController.GetAll();
+                    var categories = Categories.GetAll();
                     Clear();
-                    ConsoleController.ShowCategory(categories);
+                    ShowCategory(categories);
                     break;
 
                 case ConsoleKey.D3:
                 case ConsoleKey.NumPad3:
-                    goods = goodsController.GetInStock();
+                    goods = Goods.GetInStock();
                     Clear();
-                    ConsoleController.ShowGoods(goods);
+                    ShowGoods(goods);
                     break;
 
                 case ConsoleKey.D4:
                 case ConsoleKey.NumPad4:
-                    categories = categoriesController.GetAll();
+                    categories = Categories.GetAll();
                     Clear();
-                    ConsoleController.ShowCategory(categories);
-                    var input = ConsoleController.GetIngex(categories.Count, "Select category (Enter number): ");
-                    goods = goodsController.GetAllFollowing(categories[input].Id);
+                    ShowCategory(categories);
+                    var input = GetIngex(categories.Count, "Select category (Enter number): ");
+                    goods = Goods.GetAllFollowing(categories[input].Id);
                     Clear();
-                    ConsoleController.ShowGoods(goods);
+                    ShowGoods(goods);
                     break;
 
                 case ConsoleKey.D5:
                 case ConsoleKey.NumPad5:
-                    goods = goodsController.GetAll();
+                    goods = Goods.GetAll();
                     Clear();
-                    ConsoleController.ShowGoods(goods);
-                    input = ConsoleController.GetIngex(goods.Count, "Select goods (Enter number): ");
-                    var CurrentGoods = goodsController.GetCurrent(goods[input].Id);
+                    ShowGoods(goods);
+                    input = GetIngex(goods.Count, "Select goods (Enter number): ");
+                    var CurrentGoods = Goods.GetCurrent(goods[input].Id);
                     Clear();
-                    WriteLine("Name\t\tCount\t\tPrice\t\tCategory");
-                    WriteLine(CurrentGoods.Name + "\t\t" + CurrentGoods.Count + "\t\t" + CurrentGoods.Priсe + "\t\t" + CurrentGoods.CategoryBLL?.Name);
-                    WriteLine();
-                    if (ConsoleController.YNquestion("Do you want do something with this goods?"))
+                    Write("Name\t\tCount\t\tPrice\t\tCategory\n");
+                    Write(CurrentGoods.Name + "\t\t" + CurrentGoods.Count + "\t\t" + CurrentGoods.Priсe + "\t\t" + CurrentGoods.CategoryBLL?.Name+"\n");
+                    Write("\n");
+                    if (YNquestion("Do you want do something with this goods?"))
                     {
                         GoodsEvents(CurrentGoods);
                     }
                     break;
                 case ConsoleKey.D6:
                 case ConsoleKey.NumPad6:
-                    CategoryBLL NewCategory = CreatLocelCategory();
-                    categoriesController.Creat(NewCategory);
+                    CategoryBLL NewCategory = CreatLocalCategory();
+                    Categories.Creat(NewCategory);
                     break;
 
                 case ConsoleKey.D7:
                 case ConsoleKey.NumPad7:
-                    var NewGoods = (CteatLocalGoods(categoriesController));
-                    goodsController.Creat(NewGoods);
+                    var NewGoods = (CteatLocalGoods(Categories));
+                    Goods.Creat(NewGoods);
                     break;
                 case ConsoleKey.D8:
                 case ConsoleKey.NumPad8:
-                    categories = categoriesController.GetAll();
+                    categories = Categories.GetAll();
                     Clear();
-                    ConsoleController.ShowCategory(categories);
-                    input = ConsoleController.GetIngex(categories.Count, "Select category (Enter number): ");
-                    var CurrentCategory = categoriesController.GetCurrent(categories[input].Id);
+                    ShowCategory(categories);
+                    input = GetIngex(categories.Count, "Select category (Enter number): ");
+                    var CurrentCategory = Categories.GetCurrent(categories[input].Id);
                     Clear();
-                    WriteLine("Name");
-                    WriteLine(CurrentCategory.Name);
-                    WriteLine();
-                    if (ConsoleController.YNquestion("Do you want do something with this Category?"))
+                    Write("Name\n");
+                    Write(CurrentCategory.Name+"\n");
+                    Write("\n");
+                    if (YNquestion("Do you want do something with this Category?"))
                     {
                         CategoryEvents(CurrentCategory);
                     }
                     break;
             }
-            //UoW.Dispose();
             return true;
         }
         static void GoodsEvents(GoodsBLL goods)
         {
-            var Event = UserWishGoods();
-            var UoW = new EFUnitOfWork(new ApplicationContext());
-            var Categories = new CategoryController(UoW);
-            var Goods = new GoodsController(UoW);
+            var result = UserWish("What do you wish? (Enter number)\n" +
+                "1. Change goods\n" +
+                "2. Delete goods\n" +
+                "3. Sell goods\n" +
+                "0. Exit\n");
 
-            switch (Event)
+            switch (result)
             {
                 case ConsoleKey.D0:
                 case ConsoleKey.NumPad0:
@@ -165,38 +140,39 @@ namespace Accounting_of_goods
                     Write("Input name for goods: ");
                     goods.Name = ReadLine();
                     Clear();
-                    goods.Priсe = ConsoleController.GetNumber("Input price for new goods: ");
+                    goods.Priсe = GetNumber("Input price for new goods: ");
                     Clear();
-                    goods.Count = ConsoleController.GetNumber("Input count for new goods: ");
+                    goods.Count = GetNumber("Input count for new goods: ");
                     var categories = Categories.GetAll();
                     Clear();
-                    ConsoleController.ShowCategory(categories);
-                    var input = ConsoleController.GetIngex(categories.Count, "Select category (Enter number): ");
+                    ShowCategory(categories);
+                    var input = GetIngex(categories.Count, "Select category (Enter number): ");
                     goods.CategoryBLL = categories[input];
                     Goods.UpDate(goods);
                     break;
 
                 case ConsoleKey.D2:
                 case ConsoleKey.NumPad2:
-                    if (ConsoleController.YNquestion("Are you sure?"))
+                    if (YNquestion("Are you sure?"))
                         Goods.Delete(goods);
                     break;
 
                 case ConsoleKey.D3:
                 case ConsoleKey.NumPad3:
-                    var Seller = new GoodsSeller(UoW);
-                    int Count = ConsoleController.GetNumber("Enter count you wish: ");
+                    var Seller = new GoodsSeller(Goods);
+                    int Count = GetNumber("Enter count you wish: ");
                     Seller.Sell(Count, goods);
                     break;
             }
         }
         static void CategoryEvents(CategoryBLL category)
         {
-            var Event = UserWishCategory();
-            var UoW = new EFUnitOfWork(new ApplicationContext());
-            var Categories = new CategoryController(UoW);
+            var result = UserWish("What do you wish? (Enter number)\n" +
+                "1. Change category\n" +
+                "2. Delete category\n" +
+                "0. Exit\n");
 
-            switch (Event)
+            switch (result)
             {
                 case ConsoleKey.D0:
                 case ConsoleKey.NumPad0:
@@ -214,7 +190,7 @@ namespace Accounting_of_goods
                 case ConsoleKey.D2:
                 case ConsoleKey.NumPad2:
 
-                    if (ConsoleController.YNquestion("If Category contais goods it will be delete to0. Are you sure?"))
+                    if (YNquestion("If Category contais goods it will be delete to0. Are you sure?"))
                         Categories.Delete(category);
                     break;
             }
@@ -223,15 +199,15 @@ namespace Accounting_of_goods
         static GoodsBLL CteatLocalGoods(CategoryController Categories)
         {
             Clear();
-            string goodsName = ConsoleController.GetStrint("Input name for goods: ");
+            string goodsName = GetStrint("Input name for goods: ");
             Clear();
-            int goodsPrice = ConsoleController.GetNumber("Input price for new goods: ");
+            int goodsPrice = GetNumber("Input price for new goods: ");
             Clear();
-            int goodsCount = ConsoleController.GetNumber("Input count for new goods: ");
+            int goodsCount = GetNumber("Input count for new goods: ");
             var categories = Categories.GetAll();
             Clear();
-            ConsoleController.ShowCategory(categories);
-            var input = ConsoleController.GetIngex(categories.Count, "Select category (Enter number): ");
+            ShowCategory(categories);
+            var input = GetIngex(categories.Count, "Select category (Enter number): ");
             CategoryBLL goodsCategory = categories[input];
             GoodsBLL NewGoods = new GoodsBLL()
             {
@@ -243,10 +219,10 @@ namespace Accounting_of_goods
 
             return NewGoods;
         }
-        static CategoryBLL CreatLocelCategory()
+        static CategoryBLL CreatLocalCategory()
         {
             Clear();
-            string categoryName = ConsoleController.GetStrint("Input name for  category: ");
+            string categoryName = GetStrint("Input name for  category: ");
             CategoryBLL NewCategory = new CategoryBLL() { Name = categoryName };
             return NewCategory;
         }

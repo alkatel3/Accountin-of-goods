@@ -3,7 +3,7 @@ using BLL.Entities;
 
 namespace Accounting_of_goods
 {
-    public class ConsoleController
+    public static class ConsoleController
     {
         public static int GetIngex(int MaxValue, string ToUser)
         {
@@ -16,7 +16,7 @@ namespace Accounting_of_goods
                 if (readed && (result < 1 || result > MaxValue))
                 {
                     readed = false;
-                    WriteLine("Incorect input");
+                    Write("Incorect input\n");
                 }
             }
             result -= 1;
@@ -32,7 +32,7 @@ namespace Accounting_of_goods
                 readed = Int32.TryParse(ReadLine(), out result);
                 if (!readed)
                 {
-                    WriteLine("Incorect input");
+                    Write("Incorect input\n");
                 }
             }
             return result;
@@ -45,7 +45,7 @@ namespace Accounting_of_goods
         }
         public static void ShowGoods(List<GoodsBLL> goods)
         {
-            WriteLine("\t\tName\t\tCount\t\tPrice");
+            Write("\t\tName\t\tCount\t\tPrice\t\tCategory\n");
             int i = 1;
             foreach (var item in goods)
             {
@@ -54,27 +54,50 @@ namespace Accounting_of_goods
                 {
                     count = 0;
                 }
-                WriteLine((i++) + "\t\t" + item.Name + "\t\t" + count + "\t\t" + item.Priсe + "\t\t");
+                Write((i++) + "\t\t" +
+                    item.Name + "\t\t" +
+                    count + "\t\t" +
+                    item.Priсe + "\t\t"+
+                    item.CategoryBLL?.Name + "\t\t\n");
             }
         }
-
         public static void ShowCategory(List<CategoryBLL> categories)
         {
-            WriteLine("\tName");
+            Write("\tName\n");
             int i = 1;
             foreach (var item in categories)
             {
-                WriteLine((i++) + "\t" + item.Name);
+                Write((i++) + "\t" + item.Name + "\n");
             }
+        }
+        public static void Write(string ToUser)
+        {
+            Console.Write(ToUser);
         }
 
         public static bool YNquestion(string question)
         {
-            WriteLine(question+" (y/n)");
+            Write(question+" (y/n)\n");
             if (Console.ReadKey().Key == ConsoleKey.Y)
                 return true;
             else
                 return false;
+        }
+
+        public static void Clear()
+        {
+            Console.Clear();
+        }
+        public static string ReadLine()
+        {
+            return Console.ReadLine();
+        }
+
+        public static ConsoleKey UserWish(string WishList)
+        {
+            Write(WishList);
+            var result = ReadKey().Key;
+            return result;
         }
     }
 }

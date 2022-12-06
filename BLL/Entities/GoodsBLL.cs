@@ -7,6 +7,6 @@
         public string Name { get; set; } = null!;
         public int Count { get; set; }
         public decimal Priсe { get; set; }
-        public CategoryBLL CategoryBLL { get; set; }
+        public CategoryBLL CategoryBLL { get; set; } = null!;
     }
 }

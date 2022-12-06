@@ -2,6 +2,6 @@
 {
     public interface IProvider<T>
     {
-        void Deliver(int Count, T entity);
+         void Deliver(int Count, T entity);
     }
 }

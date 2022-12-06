@@ -1,7 +1,7 @@
 ﻿using BLL.Interfaces;
 using DAL.Entities;
+using DAL.Interfaces;
 using BLL.Exceptions;
-using DAL.Repositories;
 using BLL.Entities;
 using AutoMapper;
 
@@ -9,19 +9,22 @@ namespace BLL
 {
     public class GoodsController : ICreater<GoodsBLL>, IDeleter<GoodsBLL>, IUpDater<GoodsBLL>, IGiver<GoodsBLL>, IDisposable
     {
-        private EFUnitOfWork UoW;
+        public readonly IUnitOfWork UoW;
 
-        public GoodsController(EFUnitOfWork UoW)
+        public GoodsController(IUnitOfWork UoW)
         {
-            this.UoW = UoW;
+            this.UoW = UoW??throw new ArgumentNullException();
         }
 
         public void Creat(GoodsBLL entity)
         {
             var category = UoW.Categories.Get(entity.CategoryBLL.Id);
             var goods = new Goods() { 
-                Name = entity.Name, Category = category,
-                Count = entity.Count, Priсe = entity.Priсe
+                Name = entity.Name,
+                Category = category,
+                CategoryId=category.Id,
+                Count = entity.Count,
+                Priсe = entity.Priсe
             };
             UoW.Goods.Creat(goods);
             UoW.Save();
@@ -50,50 +53,50 @@ namespace BLL
 
         public List<GoodsBLL> GetAll()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Goods, GoodsBLL>()).CreateMapper();
+            var mapper = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Category, CategoryBLL>();
+                cfg.CreateMap<Goods, GoodsBLL>().ForMember("CategoryBLL", c=>c.MapFrom(g=>g.Category));
+                }). CreateMapper();
             
             return mapper.Map<IEnumerable<Goods>, List<GoodsBLL>>(UoW.Goods.GetAll());
-            UoW.Save();
         }
 
         public GoodsBLL GetCurrent(int id)
         {
-            var result = UoW.Goods.Get(id);
-            if (result != null) {
-                if (result.Category == null)
-                {
-                    result.Category = UoW.Categories.Get(result.CategoryId);
-                }
-                var category = new CategoryBLL() { Id = result.Category.Id, Name = result.Category.Name };
-                var goods = new GoodsBLL()
-                {
-                    Name = result.Name,
-                    Id = result.Id,
-                    Priсe = result.Priсe,
-                    Count = result.Count,
-                    CategoryBLL = category
-                };
-                UoW.Save();
-                return goods;
-            }
+            var mapper = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Category, CategoryBLL>();
+                cfg.CreateMap<Goods, GoodsBLL>().ForMember("CategoryBLL", c => c.MapFrom(g => g.Category));
+            }).CreateMapper();
 
-            throw new GoodsException("Current goods didn't fint");
+            var goods = mapper.Map<Goods, GoodsBLL>(UoW.Goods.Get(id));
+            if (goods == null)
+                throw new GoodsException("Current goods didn't fint");
+
+            return goods;
+
         }
 
         public List<GoodsBLL> GetAllFollowing(int standard)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Goods, GoodsBLL>()).CreateMapper();
+            var mapper = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Category, CategoryBLL>();
+                cfg.CreateMap<Goods, GoodsBLL>().ForMember("CategoryBLL", c => c.MapFrom(g => g.Category));
+            }).CreateMapper();
 
             return mapper.Map<IEnumerable<Goods>, List<GoodsBLL>>(UoW.Goods.Find(g => g.CategoryId == standard));
-            UoW.Save();
         }
 
         public List<GoodsBLL> GetInStock()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Goods, GoodsBLL>()).CreateMapper();
+            var mapper = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Category, CategoryBLL>();
+                cfg.CreateMap<Goods, GoodsBLL>().ForMember("CategoryBLL", c => c.MapFrom(g => g.Category));
+            }).CreateMapper();
 
             return mapper.Map<IEnumerable<Goods>, List<GoodsBLL>>(UoW.Goods.Find(g => g.Count > 0));
-            UoW.Save();
         }
 
         public void Dispose()

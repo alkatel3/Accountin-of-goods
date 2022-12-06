@@ -62,20 +62,21 @@ namespace TestProject1
         [Test]
         public void GoodsGet_TryGetOneGoodsById_MethodFindFromMockOfApplicationContextCalledOnce()
         {
-            var g = new Goods()
+            var data = new List<Goods>
             {
-                Name = "Any",
-                Priñe = 10,
-                Count = 10,
-                Id = 10
-            };
-            MockGoods.Setup(m => m.Find(10)).Returns(g);
+                new Goods() { Name="Any", Count=1, Priñe=1 },
+                new Goods() { Name="Any", Count=2, Priñe=2 },
+                new Goods() { Name="Any", Count=3, Priñe=3 }
+            }.AsQueryable();
+            MockGoods.As<IQueryable<Goods>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
+            MockGoods.Setup(m => m.Find(0)).Returns(data.FirstOrDefault());
             MockContext.Setup(c => c.Goods).Returns(MockGoods.Object);
             UoW = new(MockContext.Object);
 
-            var Actual = UoW.Goods.Get(10);
 
-            Actual.Should().Be(g);
+            var Actual = UoW.Goods.Get(0);
+
+            Actual.Should().Be(data.FirstOrDefault());
         }
 
         [Test]
@@ -228,14 +229,5 @@ namespace TestProject1
             actual.Should().BeEquivalentTo(expected);
         }
 
-        [Test]
-        public void Save_TrySaveMockDB_MethodSaveChangesFromMockOfApplicationContextCalledOnce()
-        {
-            UoW = new(MockContext.Object);
-
-            UoW.Save();
-
-            MockContext.Verify(m => m.SaveChanges(), Times.Once());
-        }
     }
 }

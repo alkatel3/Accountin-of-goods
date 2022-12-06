@@ -5,31 +5,24 @@ using DAL.EF;
 
 namespace BLL
 {
-    public class GoodsSeller : ISeller<GoodsBLL>, IDisposable
+    public class GoodsSeller : ISeller<GoodsBLL>
     {
-        EFUnitOfWork UoW;
         GoodsController goodsController;
-        public GoodsSeller(EFUnitOfWork UoW)
+        public GoodsSeller(GoodsController controller)
         {
-            this.UoW = UoW;
-            goodsController = new GoodsController(UoW);
+            goodsController = controller;
         }
 
-        public async void Sell(int Count, GoodsBLL goods)
+        public /*async*/ void Sell(int Count, GoodsBLL goods)
         {
             goods.Count -= Count;
-            goodsController.UpDate(goods);
             if (goods.Count <= 0)
             {
-                var uow = new EFUnitOfWork(new ApplicationContext());
-                GoodsProvider provider= new GoodsProvider(uow);
-                await Task.Run(()=> provider.Deliver(Count*2,goods));
+                GoodsProvider provider= new GoodsProvider();
+                /* await Task.Run(()=> */
+                provider.Deliver(Count*2,goods);
             }
-        }
-        
-        public void Dispose()
-        {
-            UoW.Dispose();
+            goodsController.UpDate(goods);
         }
     }
 }

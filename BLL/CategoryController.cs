@@ -1,7 +1,7 @@
 ﻿using BLL.Interfaces;
 using DAL.Entities;
 using BLL.Exceptions;
-using DAL.Repositories;
+using DAL.Interfaces;
 using BLL.Entities;
 using AutoMapper;
 
@@ -9,9 +9,9 @@ namespace BLL
 {
     public class CategoryController : ICreater<CategoryBLL>, IDeleter<CategoryBLL>, IUpDater<CategoryBLL>, IGiver<CategoryBLL>, IDisposable
     {
-        private EFUnitOfWork UoW;
+        private IUnitOfWork UoW;
 
-        public CategoryController(EFUnitOfWork UoW)
+        public CategoryController(IUnitOfWork UoW)
         {
             this.UoW = UoW;
         }

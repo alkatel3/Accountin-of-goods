@@ -16,12 +16,12 @@ namespace DAL.Repositories
 
         public IEnumerable<Goods> GetAll()
         {
-            return db.Goods.Include(g => g.Category);
+            return db.Goods.Include(g => g.Category).AsNoTracking();
         }
 
         public Goods? Get(int id)
         {
-            var goods = db.Goods.Find(id);
+            var goods = db.Goods.Include(g => g.Category).AsNoTracking().ToList().Find(g=>g.Id==id);
             return goods ?? default;
         }
 
@@ -33,6 +33,7 @@ namespace DAL.Repositories
         public void Update(Goods goods)
         {
             db.Goods.Update(goods);
+ 
         }
 
         public void Delete(int id)
@@ -44,7 +45,7 @@ namespace DAL.Repositories
 
         public IEnumerable<Goods> Find(Func<Goods, bool> predicate)
         {
-            return db.Goods.Where(predicate).ToList();
+            return db.Goods.AsNoTracking().Include(g => g.Category).Where(predicate).ToList();
         }
     }
 }

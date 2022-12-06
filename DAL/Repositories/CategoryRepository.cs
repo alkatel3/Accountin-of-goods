@@ -1,6 +1,6 @@
-﻿using DAL.EF;
-using DAL.Entities;
+﻿using DAL.Entities;
 using DAL.Interfaces;
+using DAL.EF;
 
 namespace DAL.Repositories
 {

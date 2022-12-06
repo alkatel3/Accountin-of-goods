@@ -140,36 +140,6 @@ namespace TestProject1
         }
 
         [Test]
-        public void GetCurrent_TryGetOneGoodsById_MethodFindFromMockOfApplicationContextCalledOnce()
-        {
-            var goods = new GoodsBLL()
-            {
-                Name = "B",
-                CategoryBLL = new CategoryBLL() { Name = "category", Id = 10 },
-                Count = 100,
-                Priсe = 10,
-                Id = 10
-            };
-            MockCategories.Setup(m => m.Find(goods.CategoryBLL.Id)).Returns(new Category() { Name = goods.CategoryBLL.Name, Id = goods.CategoryBLL.Id });
-            MockContext.Setup(m => m.Categories).Returns(MockCategories.Object);
-            MockGoods.Setup(m => m.Find(goods.Id)).Returns(new Goods()
-            {
-                Name = goods.Name,
-                Category = new Category() { Name = goods.CategoryBLL.Name, Id = goods.CategoryBLL.Id },
-                Priсe = goods.Priсe,
-                Count = goods.Count,
-                Id = goods.Id
-            });
-            MockContext.Setup(c => c.Goods).Returns(MockGoods.Object);
-            UoW = new(MockContext.Object);
-            controller = new(UoW);
-
-            var Actual = controller.GetCurrent(goods.Id);
-
-            Actual.Id.Should().Be(goods.Id);
-        }
-
-        [Test]
         public void GetAllFollowing_TryModelGetingSomeElementByPredicateFromDbWithUsingList_GetListWithThirdElement()
         {
             var data = new List<Goods>

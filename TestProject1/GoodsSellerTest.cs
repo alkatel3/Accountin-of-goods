@@ -10,6 +10,7 @@ namespace TestProject1
         Mock<DbSet<Goods>> MockGoods = null!;
         Mock<ApplicationContext> MockContext = null!;
         GoodsSeller seller = null!;
+        GoodsController controller = null!;
         [SetUp]
         public void Setup()
         {
@@ -21,7 +22,7 @@ namespace TestProject1
         [TearDown]
         public void Finalize()
         {
-            seller.Dispose();
+            controller.Dispose();
         }
 
         [Test]
@@ -47,7 +48,8 @@ namespace TestProject1
             });
             MockContext.Setup(c => c.Goods).Returns(MockGoods.Object);
             UoW = new(MockContext.Object);
-            seller = new(UoW);
+            controller = new GoodsController(UoW);
+            seller = new(controller);
 
             seller.Sell(10, goods);
 

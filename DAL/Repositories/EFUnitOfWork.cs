@@ -1,6 +1,7 @@
 ﻿using DAL.EF;
 using DAL.Entities;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
@@ -40,6 +41,7 @@ namespace DAL.Repositories
         public void Save()
         {
             db.SaveChanges();
+            db.ChangeTracker?.Clear();
         }
 
         private bool disposed = false;
