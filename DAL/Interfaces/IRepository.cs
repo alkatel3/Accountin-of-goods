@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DAL.Entities;
+using System.Linq.Expressions;
 
 namespace DAL.Interfaces
 {
-    public interface IRepository<T> where T:class
+    public interface IRepository<TKey, TEntity> where TEntity : BaseEntity<TKey>
     {
-        IEnumerable<T> GetAll();
-        T? Get(int id);
-        IEnumerable<T> Find(Func<T, Boolean> predicate);
-        void Creat(T item);
-        void Update(T item);
-        void Delete(int id);
+        IEnumerable<TEntity> GetAll();
+        TEntity? Get(TKey id);
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, Boolean>> predicate);
+        void Creat(TEntity item);
+        void Update(TEntity item);
+        void Delete(TKey id);
     }
 }

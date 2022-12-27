@@ -2,6 +2,7 @@
 using DAL.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -14,63 +15,278 @@ namespace DAL.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.0-rc.2.22472.11");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            modelBuilder.Entity("DAL.Entities.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("DAL.Entities.Goods", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("INTEGER");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Count")
-                        .HasColumnType("INTEGER");
+                    b.Property<int>("GoodsStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Priсe")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.Property<byte[]>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
-                    b.HasIndex("CategoryId");
+                    b.HasKey("Id")
+                        .HasName("PrimaryKey_Goods");
 
                     b.ToTable("Goods");
                 });
 
-            modelBuilder.Entity("DAL.Entities.Goods", b =>
+            modelBuilder.Entity("DAL.Entities.GoodsInStock", b =>
                 {
-                    b.HasOne("DAL.Entities.Category", "Category")
-                        .WithMany("Goods")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Navigation("Category");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<long>("Count")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("GoodsId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id")
+                        .HasName("PrimaryKey_GoodsInStockId");
+
+                    b.HasIndex("GoodsId")
+                        .IsUnique();
+
+                    b.ToTable("GoodsInStock");
                 });
 
-            modelBuilder.Entity("DAL.Entities.Category", b =>
+            modelBuilder.Entity("DAL.Entities.Order", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<long>("Count")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("GoodsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderListId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderStatus")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id")
+                        .HasName("PrimaryKey_OrderId");
+
+                    b.HasIndex("GoodsId");
+
+                    b.HasIndex("OrderListId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("DAL.Entities.OrderList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id")
+                        .HasName("PrimaryKey_OrderListId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("OrderLists");
+                });
+
+            modelBuilder.Entity("DAL.Entities.QueueForPurchase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<long>("Count")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("GoodsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id")
+                        .HasName("PrimaryKey_QueueForPurchaseId");
+
+                    b.HasIndex("GoodsId")
+                        .IsUnique();
+
+                    b.ToTable("QueueForPurchases");
+                });
+
+            modelBuilder.Entity("DAL.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserStatus")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id")
+                        .HasName("PrimaryKey_UserId");
+
+                    b.HasAlternateKey("PhoneNumber");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DAL.Entities.GoodsInStock", b =>
+                {
+                    b.HasOne("DAL.Entities.Goods", "Goods")
+                        .WithOne("GoodsInStock")
+                        .HasForeignKey("DAL.Entities.GoodsInStock", "GoodsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_GoodsInStock_Goods");
+
                     b.Navigation("Goods");
+                });
+
+            modelBuilder.Entity("DAL.Entities.Order", b =>
+                {
+                    b.HasOne("DAL.Entities.Goods", "Goods")
+                        .WithMany("Orders")
+                        .HasForeignKey("GoodsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_Order_Goods");
+
+                    b.HasOne("DAL.Entities.OrderList", "OrderList")
+                        .WithMany("Orders")
+                        .HasForeignKey("OrderListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_Order_OrderList");
+
+                    b.Navigation("Goods");
+
+                    b.Navigation("OrderList");
+                });
+
+            modelBuilder.Entity("DAL.Entities.OrderList", b =>
+                {
+                    b.HasOne("DAL.Entities.User", "User")
+                        .WithOne("OrderList")
+                        .HasForeignKey("DAL.Entities.OrderList", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_OrderList_User");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DAL.Entities.QueueForPurchase", b =>
+                {
+                    b.HasOne("DAL.Entities.Goods", "Goods")
+                        .WithOne("QueueForPurchase")
+                        .HasForeignKey("DAL.Entities.QueueForPurchase", "GoodsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_QueueForPurchase_Goods");
+
+                    b.Navigation("Goods");
+                });
+
+            modelBuilder.Entity("DAL.Entities.Goods", b =>
+                {
+                    b.Navigation("GoodsInStock")
+                        .IsRequired();
+
+                    b.Navigation("Orders");
+
+                    b.Navigation("QueueForPurchase")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DAL.Entities.OrderList", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("DAL.Entities.User", b =>
+                {
+                    b.Navigation("OrderList")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

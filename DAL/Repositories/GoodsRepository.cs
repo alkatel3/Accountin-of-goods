@@ -5,47 +5,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
-    public class GoodsRepository:IRepository<Goods>
+    public class GoodsRepository : BaseRepository<int,Goods>
     {
-        private ApplicationContext db;
+        public GoodsRepository(ApplicationContext context) : base(context) { }
 
-        public GoodsRepository(ApplicationContext context)
+        public override IEnumerable<Goods> Find(Func<Goods, bool> predicate)
         {
-            this.db = context;
+            return db.Set<Goods>().AsNoTracking().Where(predicate);
         }
 
-        public IEnumerable<Goods> GetAll()
+        public override IEnumerable<Goods> GetAll()
         {
-            return db.Goods.Include(g => g.Category).AsNoTracking();
-        }
-
-        public Goods? Get(int id)
-        {
-            var goods = db.Goods.Include(g => g.Category).AsNoTracking().ToList().Find(g=>g.Id==id);
-            return goods ?? default;
-        }
-
-        public void Creat(Goods goods)
-        {
-            db.Goods.Add(goods);
-        }
-
-        public void Update(Goods goods)
-        {
-            db.Goods.Update(goods);
- 
-        }
-
-        public void Delete(int id)
-        {
-            Goods? goods = db.Goods.Find(id);
-            if (goods != null)
-            db.Goods.Remove(goods);
-        }
-
-        public IEnumerable<Goods> Find(Func<Goods, bool> predicate)
-        {
-            return db.Goods.AsNoTracking().Include(g => g.Category).Where(predicate).ToList();
+            return db.Set<Goods>().Include(g=>g.QueueForPurchase).Include(g=>g.GoodsInStock).AsNoTracking();
         }
     }
 }

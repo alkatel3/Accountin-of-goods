@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj": {}
+    "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj": {
+    "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj",
         "projectName": "Accounting_of_goods",
-        "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj",
+        "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\Accounting_of_goods\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\Accounting_of_goods\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,11 +32,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\BLL\\BLL.csproj"
+              "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\BLL.csproj"
               },
-              "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\DAL\\DAL.csproj"
+              "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj"
               }
             }
           }
@@ -51,27 +51,15 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.Sqlite": {
-              "target": "Package",
-              "version": "[7.0.0-rc.2.22472.11, )"
-            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.0-rc.2.22472.11, )"
+              "version": "[7.0.1, )"
             },
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[7.0.0, )"
-            },
-            "Moq.AutoMock": {
-              "target": "Package",
-              "version": "[3.5.0-ci0287, )"
-            },
-            "Ninject": {
-              "target": "Package",
-              "version": "[4.0.0-beta.1, )"
             }
           },
           "imports": [
@@ -93,14 +81,14 @@
         }
       }
     },
-    "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\BLL\\BLL.csproj": {
+    "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\BLL\\BLL.csproj",
+        "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\BLL.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\BLL\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -121,8 +109,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\DAL\\DAL.csproj"
+              "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj"
               }
             }
           }
@@ -137,27 +125,13 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "AutoMapper": {
               "target": "Package",
               "version": "[12.0.0, )"
             },
-            "Microsoft.EntityFrameworkCore.Sqlite.Core": {
+            "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22472.11, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[7.0.0-rc.2.22472.11, )"
-            },
-            "Moq.AutoMock": {
-              "target": "Package",
-              "version": "[3.5.0-ci0287, )"
-            },
-            "Ninject": {
-              "target": "Package",
-              "version": "[4.0.0-beta.1, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -179,14 +153,14 @@
         }
       }
     },
-    "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\DAL\\DAL.csproj": {
+    "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\Lab3\\Accounting_of_goods\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -219,27 +193,19 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.Sqlite.Core": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22472.11, )"
+              "version": "[7.0.1, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.0-rc.2.22472.11, )"
+              "version": "[7.0.1, )"
             },
-            "Moq": {
+            "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
-              "version": "[4.18.2, )"
-            },
-            "Moq.AutoMock": {
-              "target": "Package",
-              "version": "[3.5.0-ci0287, )"
-            },
-            "Ninject": {
-              "target": "Package",
-              "version": "[4.0.0-beta.1, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [

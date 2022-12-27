@@ -1,12 +1,19 @@
-﻿namespace DAL.Entities
+﻿using DAL.Statuses;
+
+namespace DAL.Entities
 {
-    public class Goods
+    public class Goods:BaseEntity<int>
     {
-        public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public int Count { get; set; }
         public decimal Priсe { get; set; }
-        public int CategoryId { get; set; }
-        public virtual Category Category { get; set; } = null!;
+        public GoodsStatus GoodsStatus { get; set; }
+        public ICollection<Order> Orders { get; set; }
+        public QueueForPurchase QueueForPurchase { get; set; }
+        public GoodsInStock GoodsInStock { get; set; }
+
+        public Goods()
+        {
+            Orders = new List<Order>();
+        }
     }
 }
