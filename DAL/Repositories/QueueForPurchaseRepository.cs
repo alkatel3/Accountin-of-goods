@@ -1,7 +1,7 @@
 ﻿using DAL.EF;
 using DAL.Entities;
-using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace DAL.Repositories
 {
@@ -16,10 +16,19 @@ namespace DAL.Repositories
                 .ThenInclude(g => g.GoodsInStock).AsNoTracking();
         }
 
-        public override IEnumerable<QueueForPurchase> Find(Func<QueueForPurchase, bool> predicate)
+        public override IEnumerable<QueueForPurchase> Find(Expression<Func<QueueForPurchase, bool>> predicate)
         {
             var GoodsInStock = db.Set<QueueForPurchase>().AsNoTracking().Where(predicate);
             return GoodsInStock;
+        }
+
+        public override QueueForPurchase? Get(int id)
+        {
+            var client = db.Set<QueueForPurchase>().AsNoTracking()
+                .Include(q => q.Goods)
+                .ThenInclude(g => g.GoodsInStock)
+                .FirstOrDefault(c => c.Id == id);
+            return client ?? default;
         }
     }
 }

@@ -1,0 +1,13 @@
+﻿<form method="post" action="CreateGoods">
+    <table>
+        <tr><td><p>GoodsName: </p></td>
+            <td><input type="text"  name="name" /> </td></tr>
+        <tr><td><p>Count: </p></td>
+            <td><input type="number" min="0" step="1" name="count" /> </td></tr>
+        <tr><td><p>Price: </p></td>
+            <td><input type="number" min="0" step=".01" placeholder="0.00" required name="price" /> </td></tr>
+        <tr><td><input type="submit" value="Create" /> </td>
+                <td></td></tr>
+    </table>
+</form>
+@Html.ActionLink("Back", "ShowGoods")

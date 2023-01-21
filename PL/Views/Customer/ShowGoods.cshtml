@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PL.Models.GoodsViewModel>
+
+<style>
+    th{
+        padding-right: 100px;
+    }
+    td{
+        padding-right: 100px;
+    }
+</style>
+ 
+@Html.ActionLink("Back", "CustomerMenu")
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GoodsStatus)
+        </th>
+        <th></th>
+    </tr>
+ 
+@foreach (var item in @Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GoodsStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Order", "MakeOrder", new {goodsId=item.Id})
+        </td>
+    </tr>
+}
+ 
+</table>

@@ -10,6 +10,7 @@ namespace DAL.Interfaces
         IEnumerable<TEntity> Find(Expression<Func<TEntity, Boolean>> predicate);
         void Creat(TEntity item);
         void Update(TEntity item);
+        void UpdateRange(List<TEntity> items);
         void Delete(TKey id);
     }
 }

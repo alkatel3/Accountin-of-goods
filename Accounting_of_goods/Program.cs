@@ -3,7 +3,9 @@ using BLL.Interfaces;
 using BLL.Servises;
 using DAL.EF;
 using DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Configuration;
 using static Accounting_of_goods.ConsoleController;
 
 namespace Accounting_of_goods
@@ -37,7 +39,23 @@ namespace Accounting_of_goods
 
     internal class Program
     {
-        static readonly UnitOfWork UoW = new(new ApplicationContext());
+        static DbContextOptions<ApplicationContext> GetDbContextOption()
+        {
+            var builder = new ConfigurationBuilder();
+            // установка пути к текущему каталогу
+            builder.SetBasePath(Directory.GetCurrentDirectory());
+            // получаем конфигурацию из файла appsettings.json
+            builder.AddJsonFile("appsettings.json");
+            // создаем конфигурацию
+            var config = builder.Build();
+            // получаем строку подключения
+            string connectionString = config.GetConnectionString("DefaultConnection");
+
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
+            return optionsBuilder.UseSqlServer(connectionString).Options;
+        }
+
+        static readonly UnitOfWork UoW = new(new ApplicationContext(GetDbContextOption()));
         static readonly ICustomerService customerService = new CustomerServise(UoW);
         static readonly ISellerServise sellerServise = new SellerServise(UoW);
 

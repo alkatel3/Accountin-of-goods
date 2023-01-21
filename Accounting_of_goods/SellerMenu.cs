@@ -73,7 +73,7 @@ namespace Accounting_of_goods
             var goods = new GoodsDTO()
             {
                 Name = goodsName,
-                Priсe = goodsPrice
+                Price = goodsPrice
             };
             sellerServise.CreateGoods(goods);
             Write($"{goodsName} with price {goodsPrice} created");
@@ -103,7 +103,7 @@ namespace Accounting_of_goods
             if (result)
             {
                 goods.Name = GetStrint($"Input new name for goods \"{goods.Name}\": ");
-                goods.Priсe = GetPrice($"Input new price for goods \"{goods.Name}\": ");
+                goods.Price = GetPrice($"Input new price for goods \"{goods.Name}\": ");
                 sellerServise.UpdateGoods(goods);
                 Write($"Goods \"{goods.Name}\" Updated.\n");
             }
@@ -120,7 +120,7 @@ namespace Accounting_of_goods
             if (result)
             {
                 goods.Goods.Name = GetStrint($"Input new name for goods \"{goods.Goods.Name}\": ");
-                goods.Goods.Priсe = GetPrice($"Input new price for goods \"{goods.Goods.Name}\": ");
+                goods.Goods.Price = GetPrice($"Input new price for goods \"{goods.Goods.Name}\": ");
                 goods.Count = GetNumber($"Input new count for goods \"{goods.Goods.Name}\": ");
                 sellerServise.UpdateGoods(goods);
                 Write($"Goods \"{goods.Goods.Name}\" Updated.\n");

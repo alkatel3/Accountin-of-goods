@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Configuration;
+using System.Linq.Expressions;
+
 namespace Tests
 {
     public class UnitOfWorkTest
@@ -20,7 +23,9 @@ namespace Tests
             MockQueueForPurchase = new Mock<DbSet<QueueForPurchase>>();
             MockOrderList = new Mock<DbSet<OrderList>>();
 
-            MockContext = new Mock<ApplicationContext>("test.db");
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
+            optionsBuilder.UseSqlServer("test.db");
+            MockContext = new Mock<ApplicationContext>(optionsBuilder.Options);
         }
 
         [Test]
@@ -31,7 +36,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "B",
-                Priñe = 10
+                Price = 10
             };
 
             UoW.Goods.Creat(goods);
@@ -47,7 +52,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "B",
-                Priñe = 10
+                Price = 10
             };
             var QueueForPurchase = new QueueForPurchase()
             {
@@ -68,7 +73,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "B",
-                Priñe = 10
+                Price = 10
             };
             var goodsInStock = new GoodsInStock()
             {
@@ -89,7 +94,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "B",
-                Priñe = 10
+                Price = 10
             };
             var order = new Order()
             {
@@ -139,9 +144,9 @@ namespace Tests
         {
             var data = new List<Goods>
             {
-                new Goods() { Name="Any", Priñe=1 },
-                new Goods() { Name="Any", Priñe=2 },
-                new Goods() { Name="Any", Priñe=3 }
+                new Goods() { Name="Any", Price=1 },
+                new Goods() { Name="Any", Price=2 },
+                new Goods() { Name="Any", Price=3 }
             }.AsQueryable();
             MockGoods.As<IQueryable<Goods>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockGoods.Setup(m => m.Find(0)).Returns(data.FirstOrDefault());
@@ -159,9 +164,9 @@ namespace Tests
         {
             var data = new List<GoodsInStock>
             {
-                new GoodsInStock() { Goods = new Goods() { Name="Any", Priñe=1 }, Count=1 },
-                new GoodsInStock() { Goods = new Goods() { Name="Any", Priñe=2 }, Count=2 },
-                new GoodsInStock() { Goods = new Goods() { Name="Any", Priñe=3 }, Count=3 }
+                new GoodsInStock() { Goods = new Goods() { Name="Any", Price=1 }, Count=1 },
+                new GoodsInStock() { Goods = new Goods() { Name="Any", Price=2 }, Count=2 },
+                new GoodsInStock() { Goods = new Goods() { Name="Any", Price=3 }, Count=3 }
             }.AsQueryable();
             MockGoodsInStock.As<IQueryable<GoodsInStock>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockGoodsInStock.Setup(m => m.Find(0)).Returns(data.FirstOrDefault());
@@ -178,9 +183,9 @@ namespace Tests
         {
             var data = new List<QueueForPurchase>
             {
-                new QueueForPurchase() { Goods = new Goods() { Name="Any", Priñe=1 }, Count=1 },
-                new QueueForPurchase() { Goods = new Goods() { Name="Any", Priñe=2 }, Count=2 },
-                new QueueForPurchase() { Goods = new Goods() { Name="Any", Priñe=3 }, Count=3 }
+                new QueueForPurchase() { Goods = new Goods() { Name="Any", Price=1 }, Count=1 },
+                new QueueForPurchase() { Goods = new Goods() { Name="Any", Price=2 }, Count=2 },
+                new QueueForPurchase() { Goods = new Goods() { Name="Any", Price=3 }, Count=3 }
             }.AsQueryable();
             MockQueueForPurchase.As<IQueryable<QueueForPurchase>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockQueueForPurchase.Setup(m => m.Find(0)).Returns(data.FirstOrDefault());
@@ -197,9 +202,9 @@ namespace Tests
         {
             var data = new List<Order>
             {
-                new Order() { Goods = new Goods() { Name="Any", Priñe=1 }, Count=1 },
-                new Order() { Goods = new Goods() { Name="Any", Priñe=2 }, Count=2 },
-                new Order() { Goods = new Goods() { Name="Any", Priñe=3 }, Count=3 }
+                new Order() { Goods = new Goods() { Name="Any", Price=1 }, Count=1 },
+                new Order() { Goods = new Goods() { Name="Any", Price=2 }, Count=2 },
+                new Order() { Goods = new Goods() { Name="Any", Price=3 }, Count=3 }
             }.AsQueryable();
             MockOrder.As<IQueryable<Order>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockOrder.Setup(m => m.Find(0)).Returns(data.FirstOrDefault());
@@ -240,7 +245,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "Any",
-                Priñe = 10
+                Price = 10
             };
 
             UoW.Goods.Update(goods);
@@ -256,7 +261,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "Any",
-                Priñe = 10
+                Price = 10
             };
             var goodsInStock = new GoodsInStock()
             {
@@ -277,7 +282,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "Any",
-                Priñe = 10
+                Price = 10
             };
             var order = new Order()
             {
@@ -333,7 +338,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "B",
-                Priñe = 10
+                Price = 10
             };
             var QueueForPurchase = new QueueForPurchase()
             {
@@ -352,7 +357,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "Any",
-                Priñe = 10,
+                Price = 10,
                 Id = 10,
                 GoodsStatus=DAL.Statuses.GoodsStatus.NotAvailable
             };
@@ -371,7 +376,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "Any",
-                Priñe = 10,
+                Price = 10,
                 Id = 10
             };
             var goodsInStock = new GoodsInStock()
@@ -395,7 +400,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "Any",
-                Priñe = 10,
+                Price = 10,
                 Id = 10
             };
             var order = new Order()
@@ -467,7 +472,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "Any",
-                Priñe = 10,
+                Price = 10,
                 Id = 10,
                 GoodsStatus = DAL.Statuses.GoodsStatus.NotAvailable
             };
@@ -493,9 +498,9 @@ namespace Tests
         {
             var data = new List<Goods>
             {
-                new Goods() { Name="Any", Priñe=1 },
-                new Goods() { Name="Any", Priñe=2 },
-                new Goods() { Name="Any", Priñe=3 }
+                new Goods() { Name="Any", Price=1 },
+                new Goods() { Name="Any", Price=2 },
+                new Goods() { Name="Any", Price=3 }
             }.AsQueryable();
             MockGoods.As<IQueryable<Goods>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockContext.Setup(c => c.Set<Goods>()).Returns(MockGoods.Object);
@@ -512,9 +517,9 @@ namespace Tests
         {
             var data = new List<GoodsInStock>
             {
-                new GoodsInStock(){ Goods=new Goods() { Name="Any", Priñe=1 }, Count=1 },
-                new GoodsInStock(){ Goods=new Goods() { Name="Any", Priñe=2 }, Count=2 },
-                new GoodsInStock(){ Goods=new Goods() { Name="Any", Priñe=3 }, Count=3 }
+                new GoodsInStock(){ Goods=new Goods() { Name="Any", Price=1 }, Count=1 },
+                new GoodsInStock(){ Goods=new Goods() { Name="Any", Price=2 }, Count=2 },
+                new GoodsInStock(){ Goods=new Goods() { Name="Any", Price=3 }, Count=3 }
             }.AsQueryable();
             MockGoodsInStock.As<IQueryable<GoodsInStock>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockContext.Setup(c => c.Set<GoodsInStock>()).Returns(MockGoodsInStock.Object);
@@ -531,9 +536,9 @@ namespace Tests
         {
             var data = new List<Order>
             {
-                new Order(){ Goods=new Goods() { Name="Any", Priñe=1 }, Count=1 },
-                new Order(){ Goods=new Goods() { Name="Any", Priñe=2 }, Count=2 },
-                new Order(){ Goods=new Goods() { Name="Any", Priñe=3 }, Count=3 }
+                new Order(){ Goods=new Goods() { Name="Any", Price=1 }, Count=1 },
+                new Order(){ Goods=new Goods() { Name="Any", Price=2 }, Count=2 },
+                new Order(){ Goods=new Goods() { Name="Any", Price=3 }, Count=3 }
             }.AsQueryable();
             MockOrder.As<IQueryable<Order>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockContext.Setup(c => c.Set<Order>()).Returns(MockOrder.Object);
@@ -588,9 +593,9 @@ namespace Tests
         {
             var data = new List<QueueForPurchase>
             {
-                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Priñe=1 }, Count=1 },
-                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Priñe=2 }, Count=2 },
-                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Priñe=3 }, Count=3 }
+                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Price=1 }, Count=1 },
+                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Price=2 }, Count=2 },
+                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Price=3 }, Count=3 }
             }.AsQueryable();
             MockQueueForPurchase.As<IQueryable<QueueForPurchase>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockContext.Setup(c => c.Set<QueueForPurchase>()).Returns(MockQueueForPurchase.Object);
@@ -605,12 +610,12 @@ namespace Tests
         [Test]
         public void GoodsFind_TryModelGetingSomeElementByPredicateFromDbWithUsingList_GetListWithThirdElement()
         {
-            var predicate = (Goods g) => g.Priñe > 1;
+            Expression<Func<Goods, bool>> predicate = (Goods g) => g.Price > 1;
             var data = new List<Goods>
             {
-                new Goods() { Name="Any", Priñe=1 },
-                new Goods() { Name="Any", Priñe=2 },
-                new Goods() { Name="Any", Priñe=3 }
+                new Goods() { Name="Any", Price=1 },
+                new Goods() { Name="Any", Price=2 },
+                new Goods() { Name="Any", Price=3 }
             }.AsQueryable();
             var expected = data.Where(predicate).ToList();
 
@@ -627,12 +632,12 @@ namespace Tests
         [Test]
         public void GoodsInStockFind_TryModelGetingSomeElementByPredicateFromDbWithUsingList_GetListWithThirdElement()
         {
-            var predicate = (GoodsInStock g) => g.Count == 20;
+            Expression<Func<GoodsInStock, bool>> predicate = (GoodsInStock g) => g.Count == 20;
             var data = new List<GoodsInStock>
             {
-                new GoodsInStock(){ Goods = new Goods() { Name = "Any", Priñe = 1 }, Count = 10, },
-                new GoodsInStock(){ Goods = new Goods() { Name = "Any", Priñe = 2 }, Count = 20, },
-                new GoodsInStock(){ Goods = new Goods() { Name = "Any", Priñe = 3 }, Count = 30, }
+                new GoodsInStock(){ Goods = new Goods() { Name = "Any", Price = 1 }, Count = 10, },
+                new GoodsInStock(){ Goods = new Goods() { Name = "Any", Price = 2 }, Count = 20, },
+                new GoodsInStock(){ Goods = new Goods() { Name = "Any", Price = 3 }, Count = 30, }
             }.AsQueryable();
             var expected = data.Where(predicate).ToList();
 
@@ -649,12 +654,12 @@ namespace Tests
         [Test]
         public void OrderFind_TryModelGetingSomeElementByPredicateFromDbWithUsingList_GetListWithThirdElement()
         {
-            var predicate = (Order g) => g.Count >= 20;
+            Expression<Func<Order, bool>> predicate = (Order g) => g.Count >= 20;
             var data = new List<Order>
             {
-                new Order(){ Goods = new Goods() { Name = "Any", Priñe = 1 }, Count = 10, },
-                new Order(){ Goods = new Goods() { Name = "Any", Priñe = 2 }, Count = 20, },
-                new Order(){ Goods = new Goods() { Name = "Any", Priñe = 3 }, Count = 30, }
+                new Order(){ Goods = new Goods() { Name = "Any", Price = 1 }, Count = 10, },
+                new Order(){ Goods = new Goods() { Name = "Any", Price = 2 }, Count = 20, },
+                new Order(){ Goods = new Goods() { Name = "Any", Price = 3 }, Count = 30, }
             }.AsQueryable();
             var expected = data.Where(predicate).ToList();
 
@@ -671,7 +676,7 @@ namespace Tests
         [Test]
         public void UserFind_TryModelGetingSomeElementByPredicateFromDbWithUsingList_GetListWithThirdElement()
         {
-            var predicate = (User g) => g.PhoneNumber == 1;
+            Expression<Func<User, bool>> predicate = (User g) => g.PhoneNumber == 1;
             var data = new List<User>
             {
                 new User() { FirstName="Any", LastName="Any", PhoneNumber=1 },
@@ -693,7 +698,7 @@ namespace Tests
         [Test]
         public void OrderListFind_TryModelGetingSomeElementByPredicateFromDbWithUsingList_GetListWithThirdElement()
         {
-            var predicate = (OrderList g) => g.Id == 3;
+            Expression<Func<OrderList, bool>> predicate = (OrderList g) => g.Id == 3;
             var data = new List<OrderList>
             {
                 new OrderList(){ User=  new User() { FirstName="Any", LastName="Any", PhoneNumber=1 }, Id = 1 },
@@ -715,12 +720,12 @@ namespace Tests
         [Test]
         public void QueueForPurchaseFind_TryModelGetingSomeElementByPredicateFromDbWithUsingList_GetListWithThirdElement()
         {
-            var predicate = (QueueForPurchase g) => g.Id == 3;
+            Expression<Func<QueueForPurchase, bool>> predicate = (QueueForPurchase g) => g.Id == 3;
             var data = new List<QueueForPurchase>
             {
-                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Priñe=1 }, Count=1 },
-                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Priñe=2 }, Count=2 },
-                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Priñe=3 }, Count=3 }
+                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Price=1 }, Count=1 },
+                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Price=2 }, Count=2 },
+                new QueueForPurchase(){ Goods=new Goods() { Name="Any", Price=3 }, Count=3 }
             }.AsQueryable();
             var expected = data.Where(predicate).ToList();
 

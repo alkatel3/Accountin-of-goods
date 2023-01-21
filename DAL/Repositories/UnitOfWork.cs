@@ -3,6 +3,7 @@ using DAL.EF;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DAL.Repositories
 {
@@ -23,10 +24,13 @@ namespace DAL.Repositories
 
         private IRepository<int, User>? users;
 
+       // private IDbContextTransaction transaction;
+
 
         public UnitOfWork(ApplicationContext db)
         {
             this.db = db;
+           // transaction = db.Database.BeginTransaction();
         }
 
         public IRepository<int, Goods> Goods
@@ -128,5 +132,20 @@ namespace DAL.Repositories
                 db.ChangeTracker?.Clear();
             }
         }
+
+        //public void CreateSavepoint(string savepointName)
+        //{
+        //    transaction.CreateSavepoint(savepointName);
+        //}
+
+        //public void TransactionCommit()
+        //{
+        //    transaction.Commit();
+        //}
+
+        //public void RollbackSavepoint(string savepointName)
+        //{
+        //    transaction.RollbackToSavepoint(savepointName);
+        //}
     }
 }

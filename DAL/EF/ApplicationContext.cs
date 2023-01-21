@@ -13,17 +13,18 @@ namespace DAL.EF
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<GoodsInStock> GoodsInStock { get; set; }
 
-        private string ConnectionString;
-        public ApplicationContext(string connectionString = 
-            @"Server=(localdb)\mssqllocaldb;Database=Goods;Trusted_Connection=True;") 
-        {
-            ConnectionString = connectionString;
-        }
+        //private string ConnectionString;
+        //public ApplicationContext(string connectionString =
+        //    @"Server=(localdb)\mssqllocaldb;Database=Goods;Trusted_Connection=True;")
+        //{
+        //    ConnectionString = connectionString;
+        //}
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(ConnectionString);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(ConnectionString);
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()

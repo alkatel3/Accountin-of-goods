@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PL.Models.QueueForPurchaseViewModel>
+
+<style>
+    th{
+        padding-right: 100px;
+    }
+    td{
+        padding-right: 100px;
+    }
+</style>
+
+@Html.ActionLink("Back", "SellerMenu")
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Goods.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priority)
+        </th>
+        <th></th>
+    </tr>
+ 
+    @foreach (var item in @Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Goods.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priority)
+        </td>
+        <td>
+            @Html.ActionLink("Bring these goods", "BringTheseGoods", new {queueId=item.Id})
+        </td>
+    </tr>
+    }
+</table>

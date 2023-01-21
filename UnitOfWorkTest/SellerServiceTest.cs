@@ -23,7 +23,9 @@ namespace Tests
             MockQueueForPurchase = new Mock<DbSet<QueueForPurchase>>();
             MockOrderList = new Mock<DbSet<OrderList>>();
 
-            MockContext = new Mock<ApplicationContext>("test.db");
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
+            optionsBuilder.UseSqlServer("test.db");
+            MockContext = new Mock<ApplicationContext>(optionsBuilder.Options);
         }
 
         [Test]
@@ -31,9 +33,9 @@ namespace Tests
         {
             var data = new List<Goods>
             {
-                new Goods() { Name="Any", Priсe=1, Version=new byte[8] },
-                new Goods() { Name="Any", Priсe=2, Version=new byte[8] },
-                new Goods() { Name="Any", Priсe=3, Version=new byte[8] }
+                new Goods() { Name="Any", Price=1, Version=new byte[8] },
+                new Goods() { Name="Any", Price=2, Version=new byte[8] },
+                new Goods() { Name="Any", Price=3, Version=new byte[8] }
             }.AsQueryable();
             MockGoods.As<IQueryable<Goods>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockContext.Setup(c => c.Set<Goods>()).Returns(MockGoods.Object);
@@ -55,13 +57,13 @@ namespace Tests
             var goodsDTO = new GoodsDTO()
             {
                 Name = "B",
-                Priсe = 10
+                Price = 10
             };
 
             sellerservice.CreateGoods(goodsDTO);
 
             MockGoods.Verify(m => m.Add(It.Is<Goods>(
-                g => g.Name == goodsDTO.Name || g.Priсe == goodsDTO.Priсe)), Times.Once());
+                g => g.Name == goodsDTO.Name || g.Price == goodsDTO.Price)), Times.Once());
         }
 
         [Test]
@@ -70,7 +72,7 @@ namespace Tests
             var goods = new Goods()
             {
                 Name = "Any",
-                Priсe = 1,
+                Price = 1,
                 Id = 0,
                 GoodsInStock = new GoodsInStock() { Count = 10 },
                 GoodsStatus = DAL.Statuses.GoodsStatus.InStock
@@ -78,7 +80,7 @@ namespace Tests
             var goodsDTO = new GoodsDTO()
             {
                 Name = "Any",
-                Priсe = 1,
+                Price = 1,
                 Id = 0,
                 GoodsInStock = new GoodsInStockDTO() { Count = 10 },
                 GoodsStatus = DAL.Statuses.GoodsStatus.InStock
@@ -114,7 +116,7 @@ namespace Tests
             var goodsDTO = new GoodsDTO()
             {
                 Name = "Any",
-                Priсe = 1,
+                Price = 1,
                 Id = 0,
                 GoodsInStock = new GoodsInStockDTO() { Count = 10 },
                 GoodsStatus = DAL.Statuses.GoodsStatus.InStock
@@ -136,7 +138,7 @@ namespace Tests
             var goodsDTO = new GoodsDTO()
             {
                 Name = "Any",
-                Priсe = 1,
+                Price = 1,
                 Id = 0,
                 GoodsInStock = new GoodsInStockDTO() { Count = 10 },
                 GoodsStatus = DAL.Statuses.GoodsStatus.InStock
@@ -156,14 +158,14 @@ namespace Tests
             var goodsDTO = new GoodsDTO()
             {
                 Name = "Any",
-                Priсe = 1,
+                Price = 1,
                 Id = 0,
                 GoodsStatus = DAL.Statuses.GoodsStatus.NotAvailable
             };
             var goods = new Goods()
             {
                 Name = "Any",
-                Priсe = 1,
+                Price = 1,
                 Id = 0,
                 GoodsStatus = DAL.Statuses.GoodsStatus.NotAvailable
             };
@@ -186,9 +188,9 @@ namespace Tests
         {
             var data = new List<Goods>
             {
-                new Goods() { Name="Any", Priсe=1, Id=1 },
-                new Goods() { Name="Any", Priсe=2, Id=2 },
-                new Goods() { Name="Any", Priсe=3, Id=3 }
+                new Goods() { Name="Any", Price=1, Id=1 },
+                new Goods() { Name="Any", Price=2, Id=2 },
+                new Goods() { Name="Any", Price=3, Id=3 }
             };
             MockGoods.As<IQueryable<Goods>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockGoods.Setup(m => m.Find(data[2].Id)).Returns(data[2]);
@@ -259,9 +261,9 @@ namespace Tests
         {
             var data = new List<QueueForPurchase>
             {
-                new QueueForPurchase(){ Goods = new Goods() { Name="Any", Priсe=1, GoodsInStock = new GoodsInStock(){ Count=1, Version=new byte[8] }, Version=new byte[8] }, Count=3, Version=new byte[8] },
-                new QueueForPurchase(){ Goods = new Goods() { Name="Any", Priсe=2, GoodsInStock = new GoodsInStock(){ Count=2, Version=new byte[8] }, Version=new byte[8] }, Count=2, Version=new byte[8] },
-                new QueueForPurchase(){ Goods = new Goods() { Name="Any", Priсe=3, GoodsInStock = new GoodsInStock(){ Count=3, Version=new byte[8] }, Version=new byte[8] }, Count=1, Version=new byte[8] }
+                new QueueForPurchase(){ Goods = new Goods() { Name="Any", Price=1, GoodsInStock = new GoodsInStock(){ Count=1, Version=new byte[8] }, Version=new byte[8] }, Count=3, Version=new byte[8] },
+                new QueueForPurchase(){ Goods = new Goods() { Name="Any", Price=2, GoodsInStock = new GoodsInStock(){ Count=2, Version=new byte[8] }, Version=new byte[8] }, Count=2, Version=new byte[8] },
+                new QueueForPurchase(){ Goods = new Goods() { Name="Any", Price=3, GoodsInStock = new GoodsInStock(){ Count=3, Version=new byte[8] }, Version=new byte[8] }, Count=1, Version=new byte[8] }
             }.AsQueryable();
             MockQueueForPurchase.As<IQueryable<QueueForPurchase>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockContext.Setup(c => c.Set<QueueForPurchase>()).Returns(MockQueueForPurchase.Object);
@@ -381,9 +383,9 @@ namespace Tests
         {
             var data = new List<Order>
             {
-                new Order(){ Goods=new Goods() { Name="Any", Priсe=1, Version=new byte[8] }, Count=1, Version=new byte[8] },
-                new Order(){ Goods=new Goods() { Name="Any", Priсe=2, Version=new byte[8] }, Count=2, Version=new byte[8] },
-                new Order(){ Goods=new Goods() { Name="Any", Priсe=3, Version=new byte[8] }, Count=3, Version=new byte[8] }
+                new Order(){ Goods=new Goods() { Name="Any", Price=1, Version=new byte[8] }, Count=1, Version=new byte[8] },
+                new Order(){ Goods=new Goods() { Name="Any", Price=2, Version=new byte[8] }, Count=2, Version=new byte[8] },
+                new Order(){ Goods=new Goods() { Name="Any", Price=3, Version=new byte[8] }, Count=3, Version=new byte[8] }
             }.AsQueryable();
             MockOrder.As<IQueryable<Order>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
             MockContext.Setup(c => c.Set<Order>()).Returns(MockOrder.Object);
@@ -404,7 +406,7 @@ namespace Tests
             var goods = new GoodsDTO()
             {
                 Name = "Any",
-                Priсe = 10
+                Price = 10
             };
             var sellerServise = new SellerServise(UoW);
 
@@ -412,7 +414,7 @@ namespace Tests
 
             MockGoods.Verify(m => 
             m.Update(It.Is<Goods>(g=>g.Name==goods.Name ||
-                               g.Priсe==goods.Priсe)), Times.Once());
+                               g.Price == goods.Price)), Times.Once());
         }
 
         [Test]
@@ -448,7 +450,7 @@ namespace Tests
                     },
                     Id = 1,
                     Name = "Any",
-                    Priсe = 10
+                    Price = 10
                 },
                 Id=1,
                 Count = 3,

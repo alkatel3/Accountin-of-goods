@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PL.Models.OrderViewModel>
+ 
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    th{
+        padding-right: 100px;
+    }
+    td{
+        padding-right: 100px;
+    }
+</style>
+ 
+@Html.ActionLink("Back", "CustomerMenu")
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Goods.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Goods.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th></th>
+    </tr>
+ 
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Goods.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Goods.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus)
+        </td>
+    </tr>
+}
+ 
+</table>

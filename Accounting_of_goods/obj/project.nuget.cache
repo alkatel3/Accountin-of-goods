@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QX97gGBiuj4m8kS3QFeHi0MYjeXdr8PUpROp/rBa2Hd2+ptbu/AxlXvE2E8UJJ9+R/HeV752TNq+ZSTLzGaiiw==",
+  "dgSpecHash": "84lxE7OKeFt3oRbWw+PRoZAUEX5Dq4oAD3WDuowuV7RR9ZxcJgFi3gqDzlUSeRnN5nc8Bs3X+bPtFi4aT6jwKg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj",
+  "projectFilePath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\Accounting_of_goods\\Accounting_of_goods.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dell\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",

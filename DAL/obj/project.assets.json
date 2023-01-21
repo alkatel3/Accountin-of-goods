@@ -3570,11 +3570,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj",
+      "projectUniqueName": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj",
+      "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\DAL\\DAL.csproj",
       "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\obj\\",
+      "outputPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

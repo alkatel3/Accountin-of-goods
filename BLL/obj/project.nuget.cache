@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4J2RNoDuTCMsGl5ggmadKEdAbYWp9nzB7DCB2gfQezMNdNUiGxqCPegA2KOEXJcJkZ8AAoDOpzAsDMn3vq30rg==",
+  "dgSpecHash": "6kPb4Bsz1XGi/s7sVxoyVCrNzgj53N3LL3icS/m5El1NHLsD0pwK7WVDmqKcuWRZ88T72jdWrIAb2PUAtnVIOA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\BLL.csproj",
+  "projectFilePath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dell\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",

@@ -19,34 +19,38 @@ namespace BLL.Servises
             this.UoW.CantSaveChanges += CantSaveChange;
         }
 
-        public UserDTO CreatAccount(UserDTO client)
+        public UserDTO? CreatAccount(UserDTO clientDTO)
         {
-            client.UserStatus = DAL.Statuses.UserStatus.Customer;
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, User>()).CreateMapper();
-            var clientDAL = mapper.Map<UserDTO, User>(client);
-            UoW.Users.Creat(clientDAL);
-            UoW.Save();
-            return GetAccount(client.PhoneNumber);
+            if (clientDTO.FirstName == null || clientDTO.LastName == null || clientDTO.PhoneNumber <= 0)
+            {
+                OnEvent(ClientNull, clientDTO);
+                return null;
+            }
+            clientDTO.UserStatus = DAL.Statuses.UserStatus.Customer;
+            var client = Mappers.UserDTOUsermapper.Map<UserDTO, User>(clientDTO);
+            var TryGet = UoW.Users.Find(u => u.PhoneNumber == clientDTO.PhoneNumber).FirstOrDefault();
+            if (TryGet == null)
+            {
+                UoW.Users.Creat(client);
+                UoW.Save();
+                return GetAccount(client.PhoneNumber);
+            }
+            else
+            {
+                TryGet.FirstName = client.FirstName;
+                TryGet.LastName = client.LastName;
+                TryGet.UserStatus = client.UserStatus;
+                UoW.Users.Update(TryGet);
+                UoW.Save();
+                return Mappers.UserUserDTOmapper.Map<User, UserDTO>(TryGet);
+            }
         }
 
         public void CreatOrder(UserDTO client, GoodsDTO goods, uint count)
         {
-            var goodsMapper = new MapperConfiguration(cfg => {
-                cfg.CreateMap<QueueForPurchaseDTO, QueueForPurchase>();
-                cfg.CreateMap<GoodsInStockDTO, GoodsInStock>();
-                cfg.CreateMap<GoodsDTO, Goods>().ForMember("QueueForPurchase", o => o.MapFrom(g => g.QueueForPurchase));
-                cfg.CreateMap<GoodsDTO, Goods>().ForMember("GoodsInStock", o => o.MapFrom(g => g.GoodsInStock));
-            }).CreateMapper();
-            var GoodsDAL = goodsMapper.Map<GoodsDTO, Goods>(goods);
+            var GoodsDAL = Mappers.GoodsDtoGoodsMapper.Map<GoodsDTO, Goods>(goods);
 
-            var clientMapper = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<GoodsDTO, Goods>();
-                cfg.CreateMap<OrderDTO, Order>().ForMember("Goods", o => o.MapFrom(g => g.Goods));
-                cfg.CreateMap<OrderListDTO, OrderList>().ForMember("Orders", ol => ol.MapFrom(o => o.Orders));
-                cfg.CreateMap<UserDTO, User>().ForMember("OrderList", o => o.MapFrom(u => u.OrderList));
-                }).CreateMapper();
-            var clientDAL = clientMapper.Map<UserDTO, User>(client);
+            var clientDAL = Mappers.UserDTOUsermapper.Map<UserDTO, User>(client);
 
             if (goods == null)
             {
@@ -75,6 +79,7 @@ namespace BLL.Servises
                 OrderListId = clientDAL.OrderList.Id,
                 OrderStatus = DAL.Statuses.OrderStatus.AwaitingShipment
             };
+
             UoW.Orders.Creat(order);
 
             if (GoodsDAL.GoodsStatus == DAL.Statuses.GoodsStatus.NotAvailable || GoodsDAL.GoodsInStock?.Count<=count)
@@ -88,38 +93,22 @@ namespace BLL.Servises
 
         public UserDTO GetAccount(int phoneNumber)
         {
-            var clientDAL = UoW.Users/*.Get(phoneNumber);*/.Find(c=>c.PhoneNumber==phoneNumber).ToList().FirstOrDefault();
-            var mapper = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Goods, GoodsDTO>();
-                cfg.CreateMap<Order, OrderDTO>().ForMember("Goods",o=>o.MapFrom(g=>g.Goods));
-                cfg.CreateMap<OrderList, OrderListDTO>().ForMember("Orders", ol => ol.MapFrom(o => o.Orders));
-                cfg.CreateMap<User, UserDTO>().ForMember("OrderList", c => c.MapFrom(ol => ol.OrderList));
-            }).CreateMapper();
-            var clientDTO = mapper.Map<User, UserDTO>(clientDAL);
+            var clientDAL = UoW.Users.Find(c=>c.PhoneNumber==phoneNumber).ToList().FirstOrDefault();
+
+            var clientDTO = Mappers.UserUserDTOmapper.Map<User, UserDTO>(clientDAL);
             return clientDTO;
         }
         
         public List<GoodsDTO> GetAllGoods()
         {
             var GoodsDAL = UoW.Goods.GetAll();
-
-            var mapper = new MapperConfiguration(cfg => {
-                cfg.CreateMap<QueueForPurchase, QueueForPurchaseDTO>();
-                cfg.CreateMap<GoodsInStock, GoodsInStockDTO>();
-                cfg.CreateMap<Goods, GoodsDTO>().ForMember("QueueForPurchase", o => o.MapFrom(g => g.QueueForPurchase));
-                cfg.CreateMap<Goods, GoodsDTO>().ForMember("GoodsInStock", o => o.MapFrom(g => g.GoodsInStock));
-            }).CreateMapper();
-
-            return mapper.Map<IEnumerable<Goods>, List<GoodsDTO>>(GoodsDAL);
+            return Mappers.GoodsGoodsDtoMapper.Map<IEnumerable<Goods>, List<GoodsDTO>>(GoodsDAL);
         }
 
         public GoodsDTO GetCurrentGoods(int id)
         {
             var GoodsDAL = UoW.Goods.Get(id);
-
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Goods, GoodsDTO>()).CreateMapper();
-
-            var GoodsDTO = mapper.Map<Goods, GoodsDTO>(GoodsDAL);
+            var GoodsDTO = Mappers.GoodsGoodsDtoMapper.Map<Goods, GoodsDTO>(GoodsDAL);
             if (GoodsDAL == null)
             {
                 OnEvent(GoodsNull, GoodsDTO);
@@ -131,15 +120,16 @@ namespace BLL.Servises
         public List<GoodsInStockDTO> GetGoodsInStock()
         {
             var GoodsInStockDAL = UoW.GoodsInStock.GetAll();
-
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<GoodsInStock, GoodsInStockDTO>()).CreateMapper();
-
-            return mapper.Map<IEnumerable<GoodsInStock>, List<GoodsInStockDTO>>(GoodsInStockDAL);
+            return Mappers.GoodsInStockGoodsInStockDtoMapper
+                .Map<IEnumerable<GoodsInStock>, List<GoodsInStockDTO>>(GoodsInStockDAL);
         }    
 
         public OrderListDTO GetOrdetList(UserDTO clientDTO)
         {
-           return clientDTO.OrderList;
+            var user = UoW.Users.Find(c=>c.PhoneNumber==clientDTO.PhoneNumber).FirstOrDefault();
+            var UserDTO = Mappers.UserUserDTOmapper.Map<User, UserDTO>(user);
+            var OrderList = UserDTO?.OrderList;
+            return OrderList;
         }
 
         private void AddGoodsToQueueForPurchase(Goods goods, uint count)

@@ -14,6 +14,12 @@ namespace DAL.Interfaces
         IRepository<int,QueueForPurchase> QueueForPurchase { get; }
         IRepository<int, User> Users { get; }
 
+        //void CreateSavepoint(string savepointName);
+
+        //void TransactionCommit();
+
+        //void RollbackSavepoint(string savepointName);
+
         void Save();
     }
 }

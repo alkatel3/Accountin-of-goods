@@ -48,5 +48,10 @@ namespace DAL.Repositories
         {
             db.Set<TEntity>().Update(item);
         }
+
+        public virtual void UpdateRange(List<TEntity> items)
+        {
+            db.Set<TEntity>().UpdateRange(items);
+        }
     }
 }

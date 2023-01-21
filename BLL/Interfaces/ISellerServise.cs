@@ -15,6 +15,8 @@ namespace BLL.Interfaces
         List<OrderDTO> GetOrders();
         GoodsDTO GetCurrentGoods(int id);
         OrderListDTO GetCurrentOrderList(int id);
+        OrderDTO GetCurrentOrder(int id);
+        QueueForPurchaseDTO GetCurrentInQueueForPurchaseDTO(int id);
 
         void UpdateGoods(GoodsDTO goods);
         void UpdateGoods(GoodsInStockDTO goods);
@@ -22,8 +24,12 @@ namespace BLL.Interfaces
         void CreateGoods(GoodsDTO goods);
         void AddGoods(GoodsDTO goods, uint count);
 
+        void DeleteGoods(int id);
+
         void ProcessOrder(OrderDTO order);
 
         void BringGoodsFromQueueForPurchase(QueueForPurchaseDTO queueForPurchase);
+
+
     }
 }

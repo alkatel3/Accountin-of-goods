@@ -83,7 +83,7 @@ namespace Accounting_of_goods
             {
                 var line = (i++) + "\t\t\t" +
                     item.Name + "\t\t\t" +
-                    item.Priсe;
+                    item.Price;
 
                 if (withGoodsStatus)
                     line += $"\t\t\t{item.GoodsStatus}";
@@ -103,7 +103,7 @@ namespace Accounting_of_goods
                 var line = (i++) + "\t\t\t" +
                     item.Goods.Name + "\t\t\t" +
                     item.Count + "\t\t\t" +
-                    item.Goods.Priсe + "\n";
+                    item.Goods.Price + "\n";
                 Write(line);
             }
         }
@@ -160,7 +160,7 @@ namespace Accounting_of_goods
                 Write($"{i++}\t\t\t" +
                     $"{item.Goods.Name}\t\t" +
                     $"{item.OrderStatus}\t" +
-                    $"{item.Goods.Priсe}\t\t\t" +
+                    $"{item.Goods.Price}\t\t\t" +
                     $"{item.Count}\t\t\t" +
                     $"{item.Sum}\n");
             }

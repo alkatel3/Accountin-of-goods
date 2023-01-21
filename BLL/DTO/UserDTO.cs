@@ -9,7 +9,7 @@ namespace BLL.DTO
         public string LastName { get; set; } = null!;
         public int PhoneNumber { get; set; }
         public UserStatus UserStatus { get; set; }
-        public OrderListDTO OrderList { get; set; }
-        public byte[] Version { get; set; }
+        public OrderListDTO OrderList { get; set; } = null!;
+        public byte[] Version { get; set; } = null!;
     }
 }

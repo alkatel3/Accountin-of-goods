@@ -1,0 +1,76 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = PL
+build_property.RootNamespace = PL
+build_property.ProjectDir = C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\PL\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\PL
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Customer/CustomerMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3VzdG9tZXJNZW51LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Customer/MakeOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcTWFrZU9yZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Customer/ShowGoods.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcU2hvd0dvb2RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Customer/ShowOrderList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcU2hvd09yZGVyTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Home/SignIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduSW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Home/SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduVXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Home/Verify.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWZXJpZnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Seller/CreateGoods.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyXENyZWF0ZUdvb2RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Seller/EditGoods.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyXEVkaXRHb29kcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Seller/SellerMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyXFNlbGxlck1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Seller/ShowGoods.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyXFNob3dHb29kcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Seller/ShowOrders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyXFNob3dPcmRlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Seller/ShowQueueForPurchase.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyXFNob3dRdWV1ZUZvclB1cmNoYXNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/OneDrive/Рабочий стол/Studying/.NET/l3/Accountin-of-goods/PL/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,14 @@
+﻿@model Int32
+
+<form method="post" action="MakeOrder">
+    <input type="hidden" value=@Model name="goodsId" />
+    <table>
+        <tr><td><p>Phone: </p></td>
+            <td><input type="number" min="0" step="1" name="phone" /> </td></tr>
+        <tr><td><p>Count: </p></td>
+            <td><input type="number" min="0" step="1" name="count" /> </td></tr>
+        <tr><td><input type="submit" value="Отправить" /> </td>
+                <td></td></tr>
+    </table>
+</form>
+@Html.ActionLink("Back", "ShowGoods")

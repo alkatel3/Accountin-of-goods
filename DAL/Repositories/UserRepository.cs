@@ -1,7 +1,7 @@
 ﻿using DAL.EF;
 using DAL.Entities;
-using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace DAL.Repositories
 {
@@ -9,7 +9,7 @@ namespace DAL.Repositories
     {
         public UserRepository(ApplicationContext context) : base(context) { }
 
-        public override IEnumerable<User> Find(Func<User, bool> predicate)
+        public override IEnumerable<User> Find(Expression<Func<User, bool>> predicate)
         {
             var users = db.Set<User>()
                 .Include(c => c.OrderList)

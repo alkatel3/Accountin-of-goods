@@ -1,7 +1,7 @@
 ﻿using DAL.EF;
 using DAL.Entities;
-using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace DAL.Repositories
 {
@@ -9,7 +9,7 @@ namespace DAL.Repositories
     {
         public GoodsInStockRepository(ApplicationContext context) : base(context) { }
 
-        public override IEnumerable<GoodsInStock> Find(Func<GoodsInStock, bool> predicate)
+        public override IEnumerable<GoodsInStock> Find(Expression<Func<GoodsInStock, bool>> predicate)
         {
             var GoodsInStock = db.Set<GoodsInStock>().Include(gs => gs.Goods).AsNoTracking().Where(predicate);
             return GoodsInStock;

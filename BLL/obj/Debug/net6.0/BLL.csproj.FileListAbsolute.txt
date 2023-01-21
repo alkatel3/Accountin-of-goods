@@ -1,15 +1,16 @@
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\bin\Debug\net6.0\BLL.deps.json
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\bin\Debug\net6.0\BLL.dll
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\bin\Debug\net6.0\BLL.pdb
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\bin\Debug\net6.0\DAL.dll
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\bin\Debug\net6.0\DAL.pdb
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\obj\Debug\net6.0\BLL.csproj.AssemblyReference.cache
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\obj\Debug\net6.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\obj\Debug\net6.0\BLL.AssemblyInfoInputs.cache
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\obj\Debug\net6.0\BLL.AssemblyInfo.cs
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\obj\Debug\net6.0\BLL.csproj.CoreCompileInputs.cache
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\obj\Debug\net6.0\BLL.csproj.CopyComplete
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\obj\Debug\net6.0\BLL.dll
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\obj\Debug\net6.0\refint\BLL.dll
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\obj\Debug\net6.0\BLL.pdb
-C:\Users\Dell\source\repos\Accounting_of_goods\BLL\obj\Debug\net6.0\ref\BLL.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\bin\Debug\net6.0\EF\appsettings.json
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\bin\Debug\net6.0\BLL.deps.json
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\bin\Debug\net6.0\BLL.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\bin\Debug\net6.0\BLL.pdb
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\bin\Debug\net6.0\DAL.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\bin\Debug\net6.0\DAL.pdb
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\obj\Debug\net6.0\BLL.csproj.AssemblyReference.cache
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\obj\Debug\net6.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\obj\Debug\net6.0\BLL.AssemblyInfoInputs.cache
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\obj\Debug\net6.0\BLL.AssemblyInfo.cs
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\obj\Debug\net6.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\obj\Debug\net6.0\BLL.csproj.CopyComplete
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\obj\Debug\net6.0\BLL.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\obj\Debug\net6.0\refint\BLL.dll
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\obj\Debug\net6.0\BLL.pdb
+C:\Users\Dell\OneDrive\Рабочий стол\Studying\.NET\l3\Accountin-of-goods\BLL\obj\Debug\net6.0\ref\BLL.dll

@@ -1,0 +1,9 @@
+﻿@model PL.Models.UserViewModel
+
+<h2>@Model?.UserStatus @Model?.FirstName @Model?.LastName</h2>
+
+@Html.ActionLink("Show order list", "ShowOrderList", @Model)<br/>
+
+@Html.ActionLink("Show goods", "ShowGoods")<br/>
+
+@Html.ActionLink("Back", "Verify","Home")

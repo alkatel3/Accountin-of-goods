@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj": {}
+    "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\Accounting_of_goods\\Accounting_of_goods.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj": {
+    "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\Accounting_of_goods\\Accounting_of_goods.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\Accounting_of_goods\\Accounting_of_goods.csproj",
         "projectName": "Accounting_of_goods",
-        "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\Accounting_of_goods\\Accounting_of_goods.csproj",
+        "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\Accounting_of_goods\\Accounting_of_goods.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\Accounting_of_goods\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\Accounting_of_goods\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,11 +32,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\BLL.csproj"
+              "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\BLL\\BLL.csproj"
               },
-              "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj"
+              "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\DAL\\DAL.csproj"
               }
             }
           }
@@ -81,14 +81,14 @@
         }
       }
     },
-    "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\BLL.csproj": {
+    "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\BLL.csproj",
+        "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\BLL\\BLL.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\BLL\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -109,8 +109,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj"
+              "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\DAL\\DAL.csproj"
               }
             }
           }
@@ -153,14 +153,14 @@
         }
       }
     },
-    "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj": {
+    "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\source\\repos\\Accounting_of_goods\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\OneDrive\\Рабочий стол\\Studying\\.NET\\l3\\Accountin-of-goods\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

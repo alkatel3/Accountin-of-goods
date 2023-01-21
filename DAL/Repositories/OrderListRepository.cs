@@ -11,7 +11,7 @@ namespace DAL.Repositories
 
         public override IEnumerable<OrderList> GetAll()
         {
-            return db.Set<OrderList>().Include(ol => ol.Orders);
+            return db.Set<OrderList>().Include(ol => ol.Orders).AsNoTracking();
         }
     }
 }
